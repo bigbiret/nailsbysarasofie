@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nailsbysarasofie.github.io/nailsbysarasofie/sitemap-index.xml 
+Sitemap: https://bigbiret.github.io/nailsbysarasofie/sitemap-index.xml 
