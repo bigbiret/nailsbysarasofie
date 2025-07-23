@@ -3,8 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://bigbiret.github.io',
-  base: '/nailsbysarasofie',
+  site: 'https://nailsbysarasofie.no',
   integrations: [tailwind(), sitemap()],
   output: 'static'
 }); 
