@@ -6,16 +6,20 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
-      <a href={import.meta.env.BASE_URL} class="font-serif text-xl font-semibold text-coal">
-        Nails by Sara Sofie
+      <a href={import.meta.env.BASE_URL} class="flex items-center">
+        <img 
+          src={`${import.meta.env.BASE_URL}/logo.jpg`} 
+          alt="Nails by Sara Sofie Logo" 
+          class="h-12 w-auto object-contain"
+        />
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-8">
         <a href={import.meta.env.BASE_URL} class="text-coal hover:text-pink transition-colors">Hjem</a>
-        <a href={`${import.meta.env.BASE_URL}tjenester`} class="text-coal hover:text-pink transition-colors">Tjenester</a>
-        <a href={`${import.meta.env.BASE_URL}galleri`} class="text-coal hover:text-pink transition-colors">Galleri</a>
-        <a href={`${import.meta.env.BASE_URL}kontakt`} class="text-coal hover:text-pink transition-colors">Kontakt</a>
+        <a href={`${import.meta.env.BASE_URL}/tjenester`} class="text-coal hover:text-pink transition-colors">Tjenester</a>
+        <a href={`${import.meta.env.BASE_URL}/galleri`} class="text-coal hover:text-pink transition-colors">Galleri</a>
+        <a href={`${import.meta.env.BASE_URL}/kontakt`} class="text-coal hover:text-pink transition-colors">Kontakt</a>
       </nav>
 
       <!-- CTA Button -->
@@ -39,9 +43,9 @@
     <nav class="md:hidden hidden" id="mobile-menu">
       <div class="py-4 space-y-2">
         <a href={import.meta.env.BASE_URL} class="block py-2 text-coal hover:text-pink transition-colors">Hjem</a>
-        <a href={`${import.meta.env.BASE_URL}tjenester`} class="block py-2 text-coal hover:text-pink transition-colors">Tjenester</a>
-        <a href={`${import.meta.env.BASE_URL}galleri`} class="block py-2 text-coal hover:text-pink transition-colors">Galleri</a>
-        <a href={`${import.meta.env.BASE_URL}kontakt`} class="block py-2 text-coal hover:text-pink transition-colors">Kontakt</a>
+        <a href={`${import.meta.env.BASE_URL}/tjenester`} class="block py-2 text-coal hover:text-pink transition-colors">Tjenester</a>
+        <a href={`${import.meta.env.BASE_URL}/galleri`} class="block py-2 text-coal hover:text-pink transition-colors">Galleri</a>
+        <a href={`${import.meta.env.BASE_URL}/kontakt`} class="block py-2 text-coal hover:text-pink transition-colors">Kontakt</a>
       </div>
     </nav>
   </div>

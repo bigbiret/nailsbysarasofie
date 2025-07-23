@@ -10,7 +10,7 @@ import '../styles/globals.css';
 
 <Layout 
   title="Tjenester og priser - Nails by Sara Sofie" 
-  description="Se alle våre tjenester og priser for neglbehandling. Manikyr, gele negler og mer hos Nails by Sara Sofie."
+  description="Se alle våre tjenester og priser for neglbehandling. Gelenegler, gellakk og tilleggstjenester hos Nails by Sara Sofie i Son."
 >
   <Header />
   
@@ -18,88 +18,61 @@ import '../styles/globals.css';
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-serif text-center mb-4">Tjenester og priser</h1>
       <p class="text-center text-taupe mb-12 max-w-2xl mx-auto">
-        Vi tilbyr profesjonell neglpleie med høy kvalitet. Alle behandlinger inkluderer rensing, filing og finish.
+        Vi tilbyr profesjonell neglpleie med gelenegler, gellakk og tilleggstjenester. Alle behandlinger utføres med høy kvalitet og oppmerksomhet på detaljer.
       </p>
       
       <!-- Service Categories -->
       <div class="space-y-12">
         
-        <!-- Manikyr -->
+        <!-- Negler -->
         <section>
-          <h2 class="text-2xl font-serif mb-6">Manikyr</h2>
+          <h2 class="text-2xl font-serif mb-6">Negler ♡</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
-              <h3 class="font-serif text-lg mb-2">Klassisk manikyr</h3>
-              <p class="text-sm text-taupe mb-3">Rensing, filing, neglebåndpleie og lakk</p>
-              <p class="text-taupe mb-4">45 min - [Pris kommer her]</p>
+              <h3 class="font-serif text-lg mb-2">Gelenegler, nytt sett</h3>
+              <p class="text-sm text-taupe mb-3">Helt nye gelenegler med ønsket lengde og design</p>
+              <p class="text-taupe mb-4 font-semibold">400 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
             
             <Card>
-              <h3 class="font-serif text-lg mb-2">Fransk manikyr</h3>
-              <p class="text-sm text-taupe mb-3">Klassisk fransk finish med hvite spisser</p>
-              <p class="text-taupe mb-4">50 min - [Pris kommer her]</p>
+              <h3 class="font-serif text-lg mb-2">Gelenegler, påfyll</h3>
+              <p class="text-sm text-taupe mb-3">Vedlikehold og påfyll av eksisterende gelenegler</p>
+              <p class="text-taupe mb-4 font-semibold">300 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
             
             <Card>
-              <h3 class="font-serif text-lg mb-2">Spa manikyr</h3>
-              <p class="text-sm text-taupe mb-3">Inkluderer peeling og håndmassasje</p>
-              <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
+              <h3 class="font-serif text-lg mb-2">Gellakk, nytt sett</h3>
+              <p class="text-sm text-taupe mb-3">Langtidsholdbar lakk på naturlige negler</p>
+              <p class="text-taupe mb-4 font-semibold">200 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
           </div>
         </section>
 
-        <!-- Gele negler -->
+        <!-- Extra Service -->
         <section>
-          <h2 class="text-2xl font-serif mb-6">Gele negler</h2>
+          <h2 class="text-2xl font-serif mb-6">Extra Service</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
-              <h3 class="font-serif text-lg mb-2">Gele overlay</h3>
-              <p class="text-sm text-taupe mb-3">Forsterkning av naturlige negler</p>
-              <p class="text-taupe mb-4">90 min - [Pris kommer her]</p>
+              <h3 class="font-serif text-lg mb-2">Fjerning av gelenegler</h3>
+              <p class="text-sm text-taupe mb-3">Sikker og skånsom fjerning av gelenegler</p>
+              <p class="text-taupe mb-4 font-semibold">200 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
             
             <Card>
-              <h3 class="font-serif text-lg mb-2">Gele forlengelse</h3>
-              <p class="text-sm text-taupe mb-3">Forlengelse med tips eller sjablong</p>
-              <p class="text-taupe mb-4">120 min - [Pris kommer her]</p>
+              <h3 class="font-serif text-lg mb-2">Fjerning av gellakk</h3>
+              <p class="text-sm text-taupe mb-3">Profesjonell fjerning av gellakk</p>
+              <p class="text-taupe mb-4 font-semibold">100 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
             
             <Card>
-              <h3 class="font-serif text-lg mb-2">Vedlikehold gele</h3>
-              <p class="text-sm text-taupe mb-3">Påfyll og vedlikehold av eksisterende gele</p>
-              <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
-            </Card>
-          </div>
-        </section>
-
-        <!-- Tilleggstjenester -->
-        <section>
-          <h2 class="text-2xl font-serif mb-6">Tilleggstjenester</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card>
-              <h3 class="font-serif text-lg mb-2">Nail art</h3>
-              <p class="text-sm text-taupe mb-3">Designmotiver og dekorasjoner</p>
-              <p class="text-taupe mb-4">Fra [Pris kommer her] per negl</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
-            </Card>
-            
-            <Card>
-              <h3 class="font-serif text-lg mb-2">Fjerning gele</h3>
-              <p class="text-sm text-taupe mb-3">Sikker fjerning av gele negler</p>
-              <p class="text-taupe mb-4">30 min - [Pris kommer her]</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
-            </Card>
-            
-            <Card>
-              <h3 class="font-serif text-lg mb-2">Reparasjon</h3>
-              <p class="text-sm text-taupe mb-3">Reparasjon av skadet negl</p>
-              <p class="text-taupe mb-4">[Pris kommer her] per negl</p>
+              <h3 class="font-serif text-lg mb-2">Neglebåndolje</h3>
+              <p class="text-sm text-taupe mb-3">Nærende olje for neglebånd og kutikler</p>
+              <p class="text-taupe mb-4 font-semibold">80 kr</p>
               <Button size="sm" data-modal-open="booking-modal">Book</Button>
             </Card>
           </div>

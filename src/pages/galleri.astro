@@ -5,6 +5,15 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Modal from '../components/Modal.astro';
 import '../styles/globals.css';
+
+// Liste over galleri-bilder
+const galleryImages = [
+  { src: `${import.meta.env.BASE_URL}/galleri/IMG_2295.jpg`, alt: 'Negledesign 1' },
+  { src: `${import.meta.env.BASE_URL}/galleri/IMG_2294.jpg`, alt: 'Negledesign 2' },
+  { src: `${import.meta.env.BASE_URL}/galleri/IMG_2293.jpg`, alt: 'Negledesign 3' },
+  { src: `${import.meta.env.BASE_URL}/galleri/IMG_2292.jpg`, alt: 'Negledesign 4' },
+  { src: `${import.meta.env.BASE_URL}/galleri/IMG_2285.jpg`, alt: 'Negledesign 5' }
+];
 ---
 
 <Layout 
@@ -22,15 +31,16 @@ import '../styles/globals.css';
       
       <!-- Gallery Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        <!-- Placeholder images -->
-        {Array.from({length: 12}).map((_, i) => (
-          <div class="aspect-square bg-taupe/20 rounded-xl2 flex items-center justify-center hover:shadow-soft transition-shadow cursor-pointer">
-            <div class="text-center">
-              <svg class="w-12 h-12 mx-auto text-taupe mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-              </svg>
-              <p class="text-sm text-taupe">Bilde {i + 1}</p>
-            </div>
+        {galleryImages.map((image, index) => (
+          <div class="aspect-square overflow-hidden rounded-xl group cursor-pointer hover:shadow-soft transition-all duration-300">
+            <img 
+              src={image.src} 
+              alt={image.alt}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              data-modal-image={image.src}
+              data-modal-alt={image.alt}
+            />
           </div>
         ))}
       </div>
@@ -66,5 +76,73 @@ import '../styles/globals.css';
     </div>
   </Modal>
 
+  <!-- Image Modal -->
+  <div id="image-modal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4">
+    <div class="relative max-w-4xl max-h-[90vh] w-full">
+      <button 
+        id="close-image-modal" 
+        class="absolute -top-10 right-0 text-white hover:text-pink transition-colors z-10"
+        aria-label="Lukk bilde"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <img 
+        id="modal-image" 
+        src="" 
+        alt="" 
+        class="w-full h-full object-contain rounded-lg"
+      />
+    </div>
+  </div>
+
   <Footer />
-</Layout> 
+</Layout>
+
+<script>
+  // Image gallery functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeButton = document.getElementById('close-image-modal');
+    const galleryImages = document.querySelectorAll('[data-modal-image]');
+
+    // Open image in modal
+    galleryImages.forEach(img => {
+      img.addEventListener('click', function() {
+        const src = this.getAttribute('data-modal-image');
+        const alt = this.getAttribute('data-modal-alt');
+        
+        modalImage.src = src;
+        modalImage.alt = alt;
+        imageModal.classList.remove('hidden');
+        imageModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close modal
+    function closeModal() {
+      imageModal.classList.add('hidden');
+      imageModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeButton.addEventListener('click', closeModal);
+    
+    // Close on backdrop click
+    imageModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  });
+</script> 

@@ -7,7 +7,7 @@ import Button from '../components/Button.astro';
 import '../styles/globals.css';
 ---
 
-<Layout title="Nails by Sara Sofie - Neglsalong i Son, Vestby og Follo">
+<Layout title="Nails by Sara Sofie - Neglsalong i Son">
   <Header />
   
   <main>
@@ -19,11 +19,11 @@ import '../styles/globals.css';
           <span class="text-pink">Nails by Sara Sofie</span>
         </h1>
         <p class="text-lg text-taupe mb-8 max-w-2xl mx-auto">
-          Profesjonell neglpleie i Son, Vestby og Follo. Book din time enkelt og få vakre negler som varer.
+          Profesjonell neglpleie i Son. Book din time enkelt og få vakre negler som varer.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <Button data-modal-open="booking-modal">Book time nå</Button>
-          <Button variant="outline" href={`${import.meta.env.BASE_URL}tjenester`}>Se tjenester</Button>
+          <Button variant="outline" href={`${import.meta.env.BASE_URL}/tjenester`}>Se tjenester</Button>
         </div>
       </div>
     </section>
@@ -35,23 +35,23 @@ import '../styles/globals.css';
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Service placeholders -->
           <div class="card text-center">
-            <h3 class="font-serif text-xl mb-2">Klassisk manikyr</h3>
-            <p class="text-taupe mb-4">45 min - [Pris kommer her]</p>
+            <h3 class="font-serif text-xl mb-2">Gellakk, nytt sett</h3>
+            <p class="text-taupe mb-4">200 kr</p>
             <Button size="sm" data-modal-open="booking-modal">Book</Button>
           </div>
           <div class="card text-center">
-            <h3 class="font-serif text-xl mb-2">Gele negler</h3>
-            <p class="text-taupe mb-4">90 min - [Pris kommer her]</p>
+            <h3 class="font-serif text-xl mb-2">Gelenegler, nytt sett</h3>
+            <p class="text-taupe mb-4">400 kr</p>
             <Button size="sm" data-modal-open="booking-modal">Book</Button>
           </div>
           <div class="card text-center">
-            <h3 class="font-serif text-xl mb-2">Vedlikehold</h3>
-            <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
+            <h3 class="font-serif text-xl mb-2">Gelenegler, påfyll</h3>
+            <p class="text-taupe mb-4">300 kr</p>
             <Button size="sm" data-modal-open="booking-modal">Book</Button>
           </div>
         </div>
         <div class="text-center mt-8">
-          <Button variant="outline" href={`${import.meta.env.BASE_URL}tjenester`}>Se alle tjenester</Button>
+          <Button variant="outline" href={`${import.meta.env.BASE_URL}/tjenester`}>Se alle tjenester</Button>
         </div>
       </div>
     </section>
@@ -60,7 +60,7 @@ import '../styles/globals.css';
     <section class="bg-pink py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-serif text-coal mb-4">Klar for vakre negler?</h2>
-        <p class="text-coal mb-8">Book din time i dag og opplev profesjonell neglpleie</p>
+        <p class="text-coal mb-8">Book din time i dag og opplev profesjonell neglpleie i Son. Vi gleder oss til å se kunder fra hele området, inkludert Vestby og Follo.</p>
         <Button data-modal-open="booking-modal" class="bg-coal text-ivory hover:bg-coal/90">Book time</Button>
       </div>
     </section>
