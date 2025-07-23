@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+---
+
+<Layout 
+  title="Personvern - Nails by Sara Sofie" 
+  description="Personvernerklæring for Nails by Sara Sofie. Hvordan vi behandler dine personopplysninger."
+>
+  <Header />
+  
+  <main class="py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-serif mb-4">Personvernerklæring</h1>
+      <p class="text-taupe mb-8">Sist oppdatert: [Dato kommer her]</p>
+      
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Hvem vi er</h2>
+          <p class="mb-4">
+            Nails by Sara Sofie er en neglsalong som tilbyr profesjonelle neglbehandlinger. 
+            Vi tar personvern på alvor og ønsker å være transparente om hvordan vi samler inn og bruker dine personopplysninger.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Hvilke opplysninger vi samler inn</h2>
+          <p class="mb-4">Vi kan samle inn følgende typer personopplysninger:</p>
+          <ul class="list-disc pl-6 mb-4 space-y-2">
+            <li>Kontaktinformasjon (navn, telefonnummer, e-postadresse)</li>
+            <li>Booking-informasjon (ønsket tjeneste, tidspunkt)</li>
+            <li>Kommunikasjon med oss (meldinger, spørsmål)</li>
+            <li>Teknisk informasjon (IP-adresse, nettleser-type)</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Hvordan vi bruker opplysningene</h2>
+          <p class="mb-4">Vi bruker dine personopplysninger til:</p>
+          <ul class="list-disc pl-6 mb-4 space-y-2">
+            <li>Å håndtere bookinger og avtaler</li>
+            <li>Å kommunisere med deg om din booking</li>
+            <li>Å sende påminnelser om avtaler</li>
+            <li>Å forbedre våre tjenester</li>
+            <li>Å oppfylle juridiske forpliktelser</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Booking-system (Fresha)</h2>
+          <p class="mb-4">
+            Vi bruker Fresha som vårt booking-system. Når du booker time gjennom vårt system, 
+            blir dine opplysninger behandlet av Fresha i henhold til deres personvernerklæring. 
+            Du kan lese mer om Freshas personvern på <a href="https://www.fresha.com/privacy" class="text-pink hover:underline">deres nettside</a>.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Deling av opplysninger</h2>
+          <p class="mb-4">
+            Vi deler ikke dine personopplysninger med tredjeparter, unntatt:
+          </p>
+          <ul class="list-disc pl-6 mb-4 space-y-2">
+            <li>Når det er nødvendig for å levere våre tjenester (f.eks. Fresha)</li>
+            <li>Når vi er juridisk forpliktet til det</li>
+            <li>Med ditt eksplisitte samtykke</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Dine rettigheter</h2>
+          <p class="mb-4">Du har rett til å:</p>
+          <ul class="list-disc pl-6 mb-4 space-y-2">
+            <li>Be om innsyn i hvilke opplysninger vi har om deg</li>
+            <li>Be om retting av feilaktige opplysninger</li>
+            <li>Be om sletting av dine opplysninger</li>
+            <li>Trekke tilbake samtykke</li>
+            <li>Klage til Datatilsynet</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Sikkerhet</h2>
+          <p class="mb-4">
+            Vi tar passende tekniske og organisatoriske tiltak for å beskytte dine personopplysninger 
+            mot uautorisert tilgang, endring, utlevering eller ødeleggelse.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Oppbevaring</h2>
+          <p class="mb-4">
+            Vi oppbevarer dine personopplysninger så lenge det er nødvendig for formålene de ble samlet inn for, 
+            eller så lenge vi er juridisk forpliktet til å oppbevare dem.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Kontakt oss</h2>
+          <p class="mb-4">
+            Hvis du har spørsmål om denne personvernerklæringen eller våre personvernpraksis, 
+            kan du kontakte oss:
+          </p>
+          <ul class="list-none space-y-2">
+            <li>📧 [E-post kommer her]</li>
+            <li>📞 [Telefon kommer her]</li>
+            <li>📍 [Adresse kommer her]</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-serif mb-4">Endringer i denne erklæringen</h2>
+          <p class="mb-4">
+            Vi kan oppdatere denne personvernerklæringen fra tid til annen. 
+            Vi vil informere deg om betydelige endringer ved å publisere den nye erklæringen på denne siden.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout> 

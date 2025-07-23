@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Modal from '../components/Modal.astro';
+import '../styles/globals.css';
+---
+
+<Layout 
+  title="Tjenester og priser - Nails by Sara Sofie" 
+  description="Se alle våre tjenester og priser for neglbehandling. Manikyr, gele negler og mer hos Nails by Sara Sofie."
+>
+  <Header />
+  
+  <main class="py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-serif text-center mb-4">Tjenester og priser</h1>
+      <p class="text-center text-taupe mb-12 max-w-2xl mx-auto">
+        Vi tilbyr profesjonell neglpleie med høy kvalitet. Alle behandlinger inkluderer rensing, filing og finish.
+      </p>
+      
+      <!-- Service Categories -->
+      <div class="space-y-12">
+        
+        <!-- Manikyr -->
+        <section>
+          <h2 class="text-2xl font-serif mb-6">Manikyr</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Klassisk manikyr</h3>
+              <p class="text-sm text-taupe mb-3">Rensing, filing, neglebåndpleie og lakk</p>
+              <p class="text-taupe mb-4">45 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Fransk manikyr</h3>
+              <p class="text-sm text-taupe mb-3">Klassisk fransk finish med hvite spisser</p>
+              <p class="text-taupe mb-4">50 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Spa manikyr</h3>
+              <p class="text-sm text-taupe mb-3">Inkluderer peeling og håndmassasje</p>
+              <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+          </div>
+        </section>
+
+        <!-- Gele negler -->
+        <section>
+          <h2 class="text-2xl font-serif mb-6">Gele negler</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Gele overlay</h3>
+              <p class="text-sm text-taupe mb-3">Forsterkning av naturlige negler</p>
+              <p class="text-taupe mb-4">90 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Gele forlengelse</h3>
+              <p class="text-sm text-taupe mb-3">Forlengelse med tips eller sjablong</p>
+              <p class="text-taupe mb-4">120 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Vedlikehold gele</h3>
+              <p class="text-sm text-taupe mb-3">Påfyll og vedlikehold av eksisterende gele</p>
+              <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+          </div>
+        </section>
+
+        <!-- Tilleggstjenester -->
+        <section>
+          <h2 class="text-2xl font-serif mb-6">Tilleggstjenester</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Nail art</h3>
+              <p class="text-sm text-taupe mb-3">Designmotiver og dekorasjoner</p>
+              <p class="text-taupe mb-4">Fra [Pris kommer her] per negl</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Fjerning gele</h3>
+              <p class="text-sm text-taupe mb-3">Sikker fjerning av gele negler</p>
+              <p class="text-taupe mb-4">30 min - [Pris kommer her]</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+            
+            <Card>
+              <h3 class="font-serif text-lg mb-2">Reparasjon</h3>
+              <p class="text-sm text-taupe mb-3">Reparasjon av skadet negl</p>
+              <p class="text-taupe mb-4">[Pris kommer her] per negl</p>
+              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+            </Card>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- CTA Section -->
+      <section class="text-center mt-16 p-8 bg-pink rounded-xl2">
+        <h2 class="text-2xl font-serif mb-4">Klar for å booke?</h2>
+        <p class="mb-6">Alle priser inkluderer behandling og finish</p>
+        <Button data-modal-open="booking-modal" class="bg-coal text-ivory hover:bg-coal/90">Book din time</Button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Booking Modal -->
+  <Modal id="booking-modal" title="Book time">
+    <div class="text-center py-8">
+      <p class="mb-4">Fresha booking-widget kommer her</p>
+      <iframe 
+        src="about:blank" 
+        class="w-full h-[500px] border-0 rounded-lg"
+        title="Booking system"
+      ></iframe>
+    </div>
+  </Modal>
+
+  <Footer />
+</Layout> 

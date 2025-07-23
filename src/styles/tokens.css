@@ -1,0 +1,35 @@
+:root {
+  /* Colors */
+  --c-pink: #F3C7D7;
+  --c-ivory: #F8F4F1;
+  --c-black: #111111;
+  --c-nude: #F2C2AE;
+  --c-gold: #C8A96A;
+  --c-taupe: #B9B0A8;
+
+  /* Typography */
+  --ff-serif: 'Playfair Display', serif;
+  --ff-sans: 'Inter', system-ui, sans-serif;
+  --fs-base: 16px;
+  --fs-h1: clamp(2.2rem, 4vw, 3rem);
+  --fs-h2: clamp(1.6rem, 3vw, 2.2rem);
+  --fs-h3: 1.25rem;
+  --lh-base: 1.6;
+
+  /* UI */
+  --radius: 1rem;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+} 

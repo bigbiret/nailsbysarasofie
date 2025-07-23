@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import Modal from '../components/Modal.astro';
+import '../styles/globals.css';
+---
+
+<Layout 
+  title="Galleri - Nails by Sara Sofie" 
+  description="Se bilder av vårt arbeid og få inspirasjon til dine negler. Profesjonell neglpleie hos Nails by Sara Sofie."
+>
+  <Header />
+  
+  <main class="py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-serif text-center mb-4">Galleri</h1>
+      <p class="text-center text-taupe mb-12 max-w-2xl mx-auto">
+        Se eksempler på vårt arbeid og la deg inspirere til ditt neste negledesign.
+      </p>
+      
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Placeholder images -->
+        {Array.from({length: 12}).map((_, i) => (
+          <div class="aspect-square bg-taupe/20 rounded-xl2 flex items-center justify-center hover:shadow-soft transition-shadow cursor-pointer">
+            <div class="text-center">
+              <svg class="w-12 h-12 mx-auto text-taupe mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <p class="text-sm text-taupe">Bilde {i + 1}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Instagram CTA -->
+      <section class="text-center p-8 bg-ivory rounded-xl2">
+        <h2 class="text-2xl font-serif mb-4">Følg oss på Instagram</h2>
+        <p class="text-taupe mb-6">
+          Se de nyeste bildene og få daglig inspirasjon på vår Instagram-konto
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button variant="outline" href="#" class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            Følg oss
+          </Button>
+          <Button data-modal-open="booking-modal">Book time</Button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Booking Modal -->
+  <Modal id="booking-modal" title="Book time">
+    <div class="text-center py-8">
+      <p class="mb-4">Fresha booking-widget kommer her</p>
+      <iframe 
+        src="about:blank" 
+        class="w-full h-[500px] border-0 rounded-lg"
+        title="Booking system"
+      ></iframe>
+    </div>
+  </Modal>
+
+  <Footer />
+</Layout> 

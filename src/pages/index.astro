@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Modal from '../components/Modal.astro';
+import Button from '../components/Button.astro';
+import '../styles/globals.css';
+---
+
+<Layout title="Nails by Sara Sofie - Neglsalong i Son, Vestby og Follo">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-ivory py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-serif text-coal mb-6">
+          Velkommen til<br />
+          <span class="text-pink">Nails by Sara Sofie</span>
+        </h1>
+        <p class="text-lg text-taupe mb-8 max-w-2xl mx-auto">
+          Profesjonell neglpleie i Son, Vestby og Follo. Book din time enkelt og få vakre negler som varer.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button data-modal-open="booking-modal">Book time nå</Button>
+          <Button variant="outline" href="/tjenester">Se tjenester</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-serif text-center mb-12">Våre tjenester</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Service placeholders -->
+          <div class="card text-center">
+            <h3 class="font-serif text-xl mb-2">Klassisk manikyr</h3>
+            <p class="text-taupe mb-4">45 min - [Pris kommer her]</p>
+            <Button size="sm" data-modal-open="booking-modal">Book</Button>
+          </div>
+          <div class="card text-center">
+            <h3 class="font-serif text-xl mb-2">Gele negler</h3>
+            <p class="text-taupe mb-4">90 min - [Pris kommer her]</p>
+            <Button size="sm" data-modal-open="booking-modal">Book</Button>
+          </div>
+          <div class="card text-center">
+            <h3 class="font-serif text-xl mb-2">Vedlikehold</h3>
+            <p class="text-taupe mb-4">60 min - [Pris kommer her]</p>
+            <Button size="sm" data-modal-open="booking-modal">Book</Button>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <Button variant="outline" href="/tjenester">Se alle tjenester</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-pink py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-serif text-coal mb-4">Klar for vakre negler?</h2>
+        <p class="text-coal mb-8">Book din time i dag og opplev profesjonell neglpleie</p>
+        <Button data-modal-open="booking-modal" class="bg-coal text-ivory hover:bg-coal/90">Book time</Button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Booking Modal -->
+  <Modal id="booking-modal" title="Book time">
+    <div class="text-center py-8">
+      <p class="mb-4">Fresha booking-widget kommer her</p>
+      <iframe 
+        src="about:blank" 
+        class="w-full h-[500px] border-0 rounded-lg"
+        title="Booking system"
+      ></iframe>
+    </div>
+  </Modal>
+
+  <Footer />
+</Layout> 

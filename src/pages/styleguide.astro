@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import '../styles/globals.css';
+
+const colors = [
+  { name: 'Pink', hex: '#F3C7D7', class: 'bg-pink' },
+  { name: 'Ivory', hex: '#F8F4F1', class: 'bg-ivory' },
+  { name: 'Coal', hex: '#111111', class: 'bg-coal' },
+  { name: 'Nude', hex: '#F2C2AE', class: 'bg-nude' },
+  { name: 'Gold', hex: '#C8A96A', class: 'bg-gold' },
+  { name: 'Taupe', hex: '#B9B0A8', class: 'bg-taupe' },
+];
+---
+
+<Layout title="Styleguide - Nails by Sara Sofie">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-4xl font-serif mb-2">Styleguide</h1>
+    <p class="text-taupe mb-12">Design system for Nails by Sara Sofie</p>
+    
+    <!-- Colors -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Farger</h2>
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
+        {colors.map(color => (
+          <Card class="text-center">
+            <div class={`w-16 h-16 rounded-lg mx-auto mb-3 ${color.class}`}></div>
+            <div class="font-semibold text-sm">{color.name}</div>
+            <div class="text-xs text-taupe">{color.hex}</div>
+          </Card>
+        ))}
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Typografi</h2>
+      <div class="space-y-6">
+        <div>
+          <h1 class="text-4xl font-serif">H1 - Playfair Display</h1>
+          <p class="text-sm text-taupe">Font: Playfair Display, Size: 4xl (clamp(2.2rem, 4vw, 3rem))</p>
+        </div>
+        <div>
+          <h2 class="text-3xl font-serif">H2 - Playfair Display</h2>
+          <p class="text-sm text-taupe">Font: Playfair Display, Size: 3xl (clamp(1.6rem, 3vw, 2.2rem))</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif">H3 - Playfair Display</h3>
+          <p class="text-sm text-taupe">Font: Playfair Display, Size: xl (1.25rem)</p>
+        </div>
+        <div>
+          <p class="text-base">Brødtekst - Inter Regular</p>
+          <p class="text-sm text-taupe">Font: Inter, Size: base (1rem), Line height: 1.6</p>
+        </div>
+        <div>
+          <p class="text-sm text-taupe">Små tekster - Inter</p>
+          <p class="text-xs text-taupe">Font: Inter, Size: sm (0.875rem)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Knapper</h2>
+      <div class="space-y-4">
+        <div class="flex flex-wrap gap-4">
+          <Button>Primary Button</Button>
+          <Button variant="outline">Outline Button</Button>
+          <Button variant="ghost">Ghost Button</Button>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <Button size="sm">Small Button</Button>
+          <Button size="md">Medium Button</Button>
+          <Button size="lg">Large Button</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Kort</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card>
+          <h3 class="font-serif text-lg mb-2">Standard kort</h3>
+          <p class="text-taupe mb-4">Dette er et eksempel på et standard kort med innhold.</p>
+          <Button size="sm">Handling</Button>
+        </Card>
+        
+        <Card>
+          <h3 class="font-serif text-lg mb-2">Tjeneste kort</h3>
+          <p class="text-sm text-taupe mb-3">Beskrivelse av tjenesten som tilbys</p>
+          <p class="text-taupe mb-4">60 min - 650 kr</p>
+          <Button size="sm">Book</Button>
+        </Card>
+        
+        <Card class="bg-pink">
+          <h3 class="font-serif text-lg mb-2">Fremhevet kort</h3>
+          <p class="text-coal mb-4">Kort med rosa bakgrunn for spesielle tilbud eller CTAs.</p>
+          <Button class="bg-coal text-ivory hover:bg-coal/90" size="sm">Special CTA</Button>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Spacing -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Spacing</h2>
+      <div class="space-y-4">
+        <div class="flex items-center gap-4">
+          <div class="w-4 h-4 bg-pink"></div>
+          <span class="text-sm">xs: 0.5rem (8px)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-8 h-4 bg-pink"></div>
+          <span class="text-sm">sm: 1rem (16px)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-4 bg-pink"></div>
+          <span class="text-sm">md: 1.5rem (24px)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-4 bg-pink"></div>
+          <span class="text-sm">lg: 2rem (32px)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-24 h-4 bg-pink"></div>
+          <span class="text-sm">xl: 3rem (48px)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shadows & Borders -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-serif mb-6">Skygger og border</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 bg-ivory shadow-soft rounded-xl2">
+          <h3 class="font-serif mb-2">Soft shadow</h3>
+          <p class="text-sm text-taupe">Standard skygge for kort og modaler</p>
+        </div>
+        <div class="p-6 bg-ivory rounded-xl2 border border-taupe/20">
+          <h3 class="font-serif mb-2">Border radius xl2</h3>
+          <p class="text-sm text-taupe">Standard border radius: 1rem (16px)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation back -->
+    <div class="text-center pt-8 border-t border-taupe/20">
+      <Button variant="outline" href="/">Tilbake til forsiden</Button>
+    </div>
+  </div>
+</Layout> 

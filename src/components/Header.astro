@@ -1,0 +1,62 @@
+---
+// Header component
+---
+
+<header class="bg-ivory border-b border-taupe/20 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href="/" class="font-serif text-xl font-semibold text-coal">
+        Nails by Sara Sofie
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="/" class="text-coal hover:text-pink transition-colors">Hjem</a>
+        <a href="/tjenester" class="text-coal hover:text-pink transition-colors">Tjenester</a>
+        <a href="/galleri" class="text-coal hover:text-pink transition-colors">Galleri</a>
+        <a href="/kontakt" class="text-coal hover:text-pink transition-colors">Kontakt</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <button 
+        class="btn btn-primary" 
+        data-modal-open="booking-modal"
+        aria-label="Book time"
+      >
+        Book time
+      </button>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden" id="mobile-menu-button">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden hidden" id="mobile-menu">
+      <div class="py-4 space-y-2">
+        <a href="/" class="block py-2 text-coal hover:text-pink transition-colors">Hjem</a>
+        <a href="/tjenester" class="block py-2 text-coal hover:text-pink transition-colors">Tjenester</a>
+        <a href="/galleri" class="block py-2 text-coal hover:text-pink transition-colors">Galleri</a>
+        <a href="/kontakt" class="block py-2 text-coal hover:text-pink transition-colors">Kontakt</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script> 

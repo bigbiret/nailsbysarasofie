@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global tweaks */
+html { 
+  scroll-behavior: smooth; 
+}
+
+body { 
+  @apply bg-ivory text-coal font-sans leading-relaxed; 
+}
+
+h1, h2, h3, h4 { 
+  @apply font-serif tracking-tight text-coal; 
+}
+
+/* Button components */
+.btn {
+  @apply inline-block px-5 py-3 rounded-xl2 font-sans transition-all duration-200;
+}
+
+.btn-primary { 
+  @apply bg-pink text-coal hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-pink focus:ring-opacity-50; 
+}
+
+.btn-outline { 
+  @apply border border-coal text-coal hover:bg-coal hover:text-ivory focus:outline-none focus:ring-2 focus:ring-coal focus:ring-opacity-50; 
+}
+
+.btn-sm { 
+  @apply px-3 py-2 text-sm; 
+}
+
+/* Card component */
+.card { 
+  @apply bg-ivory shadow-soft rounded-xl2 p-6; 
+}
+
+/* Modal styles for MicroModal */
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal__container {
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1001;
+} 

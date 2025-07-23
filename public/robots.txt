@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nailsbysarasofie.github.io/nailsbysarasofie/sitemap-index.xml 

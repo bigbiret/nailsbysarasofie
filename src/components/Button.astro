@@ -1,0 +1,46 @@
+---
+export interface Props {
+  variant?: 'primary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { 
+  variant = 'primary', 
+  size = 'md',
+  href,
+  class: className = '',
+  ...rest 
+} = Astro.props;
+
+const baseClasses = 'btn';
+const variantClasses = {
+  primary: 'btn-primary',
+  outline: 'btn-outline', 
+  ghost: 'text-coal hover:text-pink transition-colors'
+};
+const sizeClasses = {
+  sm: 'btn-sm',
+  md: '',
+  lg: 'px-6 py-4 text-lg'
+};
+
+const classes = [
+  baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  className
+].filter(Boolean).join(' ');
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element 
+  class={classes}
+  href={href}
+  {...rest}
+>
+  <slot />
+</Element> 
