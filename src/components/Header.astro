@@ -1,5 +1,16 @@
 ---
 // Header component
+const currentPath = Astro.url.pathname;
+const basePath = import.meta.env.BASE_URL || '';
+
+// Helper function to check if current page is active
+function isActive(path: string) {
+  const fullPath = basePath + path;
+  if (path === '' && (currentPath === basePath || currentPath === basePath + '/')) {
+    return true;
+  }
+  return currentPath === fullPath || currentPath === fullPath + '/';
+}
 ---
 
 <header class="bg-ivory border-b border-taupe/20 sticky top-0 z-50">
@@ -7,19 +18,37 @@
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <a href={import.meta.env.BASE_URL} class="flex items-center">
-        <img 
-          src={`${import.meta.env.BASE_URL}/logo.jpg`} 
-          alt="Nails by Sara Sofie Logo" 
-          class="h-12 w-auto object-contain"
-        />
+        <span class="font-serif text-xl md:text-2xl text-coal font-medium tracking-tight">
+          Nails By Sara Sofie
+        </span>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex space-x-8">
-        <a href={import.meta.env.BASE_URL} class="text-coal hover:text-pink transition-colors">Hjem</a>
-        <a href={`${import.meta.env.BASE_URL}/tjenester`} class="text-coal hover:text-pink transition-colors">Tjenester</a>
-        <a href={`${import.meta.env.BASE_URL}/galleri`} class="text-coal hover:text-pink transition-colors">Galleri</a>
-        <a href={`${import.meta.env.BASE_URL}/kontakt`} class="text-coal hover:text-pink transition-colors">Kontakt</a>
+        <a 
+          href={import.meta.env.BASE_URL} 
+          class={`transition-colors ${isActive('') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Hjem
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/tjenester`} 
+          class={`transition-colors ${isActive('/tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Tjenester
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/galleri`} 
+          class={`transition-colors ${isActive('/galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Galleri
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/kontakt`} 
+          class={`transition-colors ${isActive('/kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Kontakt
+        </a>
       </nav>
 
       <!-- CTA Button -->
@@ -42,10 +71,30 @@
     <!-- Mobile Navigation -->
     <nav class="md:hidden hidden" id="mobile-menu">
       <div class="py-4 space-y-2">
-        <a href={import.meta.env.BASE_URL} class="block py-2 text-coal hover:text-pink transition-colors">Hjem</a>
-        <a href={`${import.meta.env.BASE_URL}/tjenester`} class="block py-2 text-coal hover:text-pink transition-colors">Tjenester</a>
-        <a href={`${import.meta.env.BASE_URL}/galleri`} class="block py-2 text-coal hover:text-pink transition-colors">Galleri</a>
-        <a href={`${import.meta.env.BASE_URL}/kontakt`} class="block py-2 text-coal hover:text-pink transition-colors">Kontakt</a>
+        <a 
+          href={import.meta.env.BASE_URL} 
+          class={`block py-2 transition-colors ${isActive('') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Hjem
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/tjenester`} 
+          class={`block py-2 transition-colors ${isActive('/tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Tjenester
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/galleri`} 
+          class={`block py-2 transition-colors ${isActive('/galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Galleri
+        </a>
+        <a 
+          href={`${import.meta.env.BASE_URL}/kontakt`} 
+          class={`block py-2 transition-colors ${isActive('/kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+        >
+          Kontakt
+        </a>
       </div>
     </nav>
   </div>
