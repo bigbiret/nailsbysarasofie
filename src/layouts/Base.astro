@@ -143,6 +143,127 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
     
+    <!-- Klaro Cookie Consent -->
+    <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
+    <script>
+      // Klaro konfigurasjon for GDPR-compliant samtykke
+      window.klaroConfig = {
+        version: 1,
+        elementID: 'klaro',
+        noAutoLoad: true,
+        htmlTexts: true,
+        embedded: false,
+        groupByPurpose: true,
+        storageMethod: 'localStorage',
+        cookieName: 'nails-sara-sofie-klaro',
+        cookieExpiresAfterDays: 365,
+        default: false,
+        mustConsent: true,
+        acceptAll: true,
+        hideDeclineAll: false,
+        hideLearnMore: false,
+        
+        // Norsk oversettelse
+        translations: {
+          nb: {
+            consentModal: {
+              title: 'Informasjonskapsler og personvern',
+              description: 'Vi bruker informasjonskapsler for å forbedre din opplevelse på nettsiden vår. Du kan velge hvilke kategorier du ønsker å tillate nedenfor.',
+            },
+            consentNotice: {
+              changeDescription: 'Det har skjedd endringer siden du sist ga samtykke. Vennligst oppdater ditt samtykke.',
+              description: 'Vi bruker informasjonskapsler og lignende teknologier for å forbedre din opplevelse. Ved å klikke "Aksepter alle" samtykker du til bruk av alle informasjonskapsler.',
+              learnMore: 'Tilpass innstillinger',
+              acceptAll: 'Aksepter alle',
+              declineAll: 'Avvis alle'
+            },
+            ok: 'Aksepter',
+            save: 'Lagre innstillinger',
+            decline: 'Avvis',
+            close: 'Lukk',
+            acceptAll: 'Aksepter alle',
+            acceptSelected: 'Aksepter valgte',
+            declineAll: 'Avvis alle',
+            app: {
+              required: {
+                title: 'Nødvendige',
+                description: 'Disse informasjonskapslene er nødvendige for at nettsiden skal fungere og kan ikke deaktiveres.'
+              },
+              analytics: {
+                title: 'Analyse',
+                description: 'Hjelper oss å forstå hvordan besøkende bruker nettsiden, slik at vi kan forbedre brukeropplevelsen.'
+              }
+            },
+            purposes: {
+              analytics: 'Analyse',
+              functional: 'Funksjonalitet'
+            }
+          }
+        },
+        
+        // Tjenester som krever samtykke
+        services: [
+          {
+            name: 'google-analytics',
+            title: 'Google Analytics',
+            description: 'Webanalyse for å forstå besøksmønstre og forbedre nettsiden.',
+            purposes: ['analytics'],
+            required: false,
+            optOut: false,
+            onlyOnce: false,
+            default: false,
+            callback: function(consent, service) {
+              if (consent) {
+                // Aktiver Google Analytics når samtykke er gitt
+                loadGoogleAnalytics();
+              } else {
+                // Deaktiver Google Analytics hvis samtykke trekkes tilbake
+                disableGoogleAnalytics();
+              }
+            }
+          }
+        ]
+      };
+
+      // Funksjon for å laste Google Analytics
+      function loadGoogleAnalytics() {
+        // Last Google Analytics script
+        if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            // Initialiser Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            
+            gtag('js', new Date());
+            gtag('config', 'G-TQKDPTFG2K', {
+              'anonymize_ip': true,
+              'allow_google_signals': false,
+              'allow_ad_personalization_signals': false
+            });
+            
+            console.log('Google Analytics aktivert med samtykke');
+          };
+        }
+      }
+
+      // Funksjon for å deaktivere Google Analytics
+      function disableGoogleAnalytics() {
+        // Sett Google Analytics disable flag
+        window['ga-disable-G-TQKDPTFG2K'] = true;
+        console.log('Google Analytics deaktivert');
+      }
+
+      // Sett norsk som standard språk
+      window.klaro = window.klaro || [];
+      window.klaro.push(['language', 'nb']);
+    </script>
+    
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>

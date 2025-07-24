@@ -18,8 +18,31 @@ document.addEventListener('DOMContentLoaded', function() {
   
   bookingButtons.forEach(button => {
     button.addEventListener('click', function() {
-      // Analytics tracking can be added here
+      // Google Analytics event tracking (kun hvis aktivert via Klaro)
+      if (typeof window.gtag !== 'undefined' && window.gtag) {
+        window.gtag('event', 'booking_modal_open', {
+          'event_category': 'booking',
+          'event_label': 'modal_open'
+        });
+      }
       console.log('Booking modal opened');
+    });
+  });
+
+  // Track external booking links (Fresha)
+  const externalBookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
+  
+  externalBookingLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      // Google Analytics event tracking (kun hvis aktivert via Klaro)
+      if (typeof window.gtag !== 'undefined' && window.gtag) {
+        window.gtag('event', 'booking_click', {
+          'event_category': 'booking',
+          'event_label': 'fresha_external',
+          'value': 1
+        });
+      }
+      console.log('External booking link clicked');
     });
   });
 }); 
