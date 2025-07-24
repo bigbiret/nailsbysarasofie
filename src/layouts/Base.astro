@@ -300,44 +300,29 @@ const structuredData = {
        }
      </style>
      
-     <!-- Load modal analytics tracking -->
+     <!-- Google Analytics Event Tracking -->
      <script>
-       // Inline the modal script to avoid 404 issues
        document.addEventListener('DOMContentLoaded', function() {
-         console.log('✅ Analytics tracking loaded');
+         console.log('✅ Analytics event tracking loaded');
          
-         // Track booking button clicks for analytics
-         const bookingButtons = document.querySelectorAll('[data-modal-open="booking-modal"]');
+         // Track all booking links (Fresha)
+         const bookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
          
-         bookingButtons.forEach(button => {
-           button.addEventListener('click', function() {
-             // Google Analytics event tracking (kun hvis aktivert via samtykke)
-             if (typeof window.gtag !== 'undefined' && window.gtag) {
-               window.gtag('event', 'booking_modal_open', {
-                 'event_category': 'booking',
-                 'event_label': 'modal_open'
-               });
-               console.log('📊 Analytics: Booking modal opened');
-             }
-           });
-         });
-
-         // Track external booking links (Fresha)
-         const externalBookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
-         
-         externalBookingLinks.forEach(link => {
+         bookingLinks.forEach(link => {
            link.addEventListener('click', function() {
              // Google Analytics event tracking (kun hvis aktivert via samtykke)
              if (typeof window.gtag !== 'undefined' && window.gtag) {
                window.gtag('event', 'booking_click', {
                  'event_category': 'booking',
-                 'event_label': 'fresha_external',
-                 'value': 1
+                 'event_label': 'fresha_link',
+                 'transport_type': 'beacon'
                });
-               console.log('📊 Analytics: External booking link clicked');
+               console.log('📊 Analytics: Booking link clicked (Fresha)');
              }
            });
          });
+         
+         console.log(`📊 Tracking ${bookingLinks.length} booking links`);
        });
      </script>
    </body>

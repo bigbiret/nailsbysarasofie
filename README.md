@@ -50,7 +50,7 @@ Nettsiden vil være tilgjengelig på `http://localhost:4321`
 │   │   ├── styleguide.astro
 │   │   └── personvern.astro
 │   ├── scripts/           # JavaScript filer
-│   │   └── modal.js       # Modal funktionalitet
+│   │   └── (ingen filer)  # Event tracking er inline i Base.astro
 │   └── styles/            # CSS filer
 │       ├── globals.css    # Global styling
 │       └── tokens.css     # Design tokens
