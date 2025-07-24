@@ -214,21 +214,36 @@ const structuredData = {
             optOut: false,
             onlyOnce: false,
             default: false,
+            cookies: [
+              // Google Analytics cookies
+              [/^_ga(_.*)?/, '/', 'google-analytics'],
+              [/^_gid/, '/', 'google-analytics'],
+              [/^_gat/, '/', 'google-analytics']
+            ],
             callback: function(consent, service) {
+              console.log('Google Analytics consent:', consent);
               if (consent) {
                 // Aktiver Google Analytics når samtykke er gitt
-                loadGoogleAnalytics();
+                if (typeof window.loadGoogleAnalytics === 'function') {
+                  window.loadGoogleAnalytics();
+                } else {
+                  console.error('loadGoogleAnalytics function not found');
+                }
               } else {
                 // Deaktiver Google Analytics hvis samtykke trekkes tilbake
-                disableGoogleAnalytics();
+                if (typeof window.disableGoogleAnalytics === 'function') {
+                  window.disableGoogleAnalytics();
+                } else {
+                  console.error('disableGoogleAnalytics function not found');
+                }
               }
             }
           }
         ]
       };
 
-      // Funksjon for å laste Google Analytics
-      function loadGoogleAnalytics() {
+      // Global funksjon for å laste Google Analytics
+      window.loadGoogleAnalytics = function() {
         // Last Google Analytics script
         if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
           const script = document.createElement('script');
@@ -249,17 +264,19 @@ const structuredData = {
               'allow_ad_personalization_signals': false
             });
             
-            console.log('Google Analytics aktivert med samtykke');
+            console.log('✅ Google Analytics aktivert med samtykke');
           };
+        } else {
+          console.log('ℹ️ Google Analytics allerede lastet');
         }
-      }
+      };
 
-      // Funksjon for å deaktivere Google Analytics
-      function disableGoogleAnalytics() {
+      // Global funksjon for å deaktivere Google Analytics
+      window.disableGoogleAnalytics = function() {
         // Sett Google Analytics disable flag
         window['ga-disable-G-TQKDPTFG2K'] = true;
-        console.log('Google Analytics deaktivert');
-      }
+        console.log('❌ Google Analytics deaktivert');
+      };
 
       // Debug og initialiser Klaro
       console.log('Klaro config loaded:', window.klaroConfig);
@@ -317,7 +334,7 @@ const structuredData = {
       function acceptCookies() {
         localStorage.setItem('cookie-consent', 'accepted');
         document.getElementById('fallback-cookie-notice').style.display = 'none';
-        loadGoogleAnalytics();
+        window.loadGoogleAnalytics();
         console.log('✅ Cookies accepted via fallback');
       }
       

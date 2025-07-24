@@ -1,18 +1,31 @@
-import MicroModal from 'micromodal';
-
-// Initialize MicroModal
-MicroModal.init({
-  openTrigger: 'data-modal-open',
-  closeTrigger: 'data-modal-close',
-  disableScroll: true,
-  disableFocus: false,
-  awaitOpenAnimation: false,
-  awaitCloseAnimation: false,
-  debugMode: false
-});
+// Initialize modal functionality
+// Import MicroModal dynamically for client-side use
+async function initializeModal() {
+  try {
+    const MicroModal = await import('micromodal');
+    
+    // Initialize MicroModal
+    MicroModal.default.init({
+      openTrigger: 'data-modal-open',
+      closeTrigger: 'data-modal-close',
+      disableScroll: true,
+      disableFocus: false,
+      awaitOpenAnimation: false,
+      awaitCloseAnimation: false,
+      debugMode: false
+    });
+    
+    console.log('✅ MicroModal initialized successfully');
+  } catch (error) {
+    console.error('❌ Failed to initialize MicroModal:', error);
+  }
+}
 
 // Add event listeners for booking buttons
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize modal system
+  initializeModal();
+  
   // Track booking button clicks for analytics
   const bookingButtons = document.querySelectorAll('[data-modal-open="booking-modal"]');
   
