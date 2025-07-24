@@ -56,12 +56,12 @@
           <a href={`${import.meta.env.BASE_URL}personvern`} class="hover:text-ivory transition-colors">
             Personvern
           </a>
-          <button 
-            onclick="if(typeof klaro !== 'undefined' && klaro.show) klaro.show();" 
-            class="hover:text-ivory transition-colors cursor-pointer"
-          >
-            Cookie-innstillinger
-          </button>
+                     <button 
+             onclick="if(typeof klaro !== 'undefined') { klaro.getManager().show(); }" 
+             class="hover:text-ivory transition-colors cursor-pointer"
+           >
+             Cookie-innstillinger
+           </button>
         </div>
       </div>
     </div>

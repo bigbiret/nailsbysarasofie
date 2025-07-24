@@ -144,13 +144,15 @@ const structuredData = {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
     
     <!-- Klaro Cookie Consent -->
-    <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
+    <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js" 
+            onerror="console.error('Failed to load Klaro from CDN')"
+            onload="console.log('Klaro loaded successfully')"></script>
     <script>
       // Klaro konfigurasjon for GDPR-compliant samtykke
       window.klaroConfig = {
         version: 1,
         elementID: 'klaro',
-        noAutoLoad: true,
+        noAutoLoad: false,
         htmlTexts: true,
         embedded: false,
         groupByPurpose: true,
@@ -259,9 +261,35 @@ const structuredData = {
         console.log('Google Analytics deaktivert');
       }
 
-      // Sett norsk som standard språk
-      window.klaro = window.klaro || [];
-      window.klaro.push(['language', 'nb']);
+      // Debug og initialiser Klaro
+      console.log('Klaro config loaded:', window.klaroConfig);
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, checking for Klaro...');
+        
+        // Vent til Klaro er tilgjengelig (max 10 sekunder)
+        let attempts = 0;
+        const maxAttempts = 100;
+        
+        const checkKlaro = setInterval(() => {
+          attempts++;
+          
+          if (typeof klaro !== 'undefined') {
+            clearInterval(checkKlaro);
+            console.log('✅ Klaro found! Initializing...');
+            
+            try {
+              klaro.getManager().setLanguage('nb');
+              console.log('✅ Klaro language set to Norwegian');
+            } catch (error) {
+              console.error('❌ Error setting Klaro language:', error);
+            }
+          } else if (attempts >= maxAttempts) {
+            clearInterval(checkKlaro);
+            console.error('❌ Klaro failed to load after 10 seconds');
+          }
+        }, 100);
+      });
     </script>
     
     <!-- Structured Data -->
@@ -269,6 +297,49 @@ const structuredData = {
   </head>
   <body>
     <slot />
+    
+    <!-- Fallback cookie-notice hvis Klaro feiler -->
+    <div id="fallback-cookie-notice" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #F8F4F1; border-top: 1px solid #B9B0A8; padding: 1rem; z-index: 9999; font-family: 'Inter', sans-serif; color: #111111;">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="flex: 1; min-width: 300px;">
+          <strong>🍪 Informasjonskapsler</strong><br>
+          <span style="font-size: 0.9rem;">Vi bruker Google Analytics for å forbedre nettsiden. Ønsker du å tillate dette?</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button onclick="acceptCookies()" style="background: #F3C7D7; color: #111111; border: none; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-weight: 500;">Aksepter</button>
+          <button onclick="declineCookies()" style="background: transparent; color: #B9B0A8; border: 1px solid #B9B0A8; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer;">Avvis</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Fallback functions hvis Klaro feiler
+      function acceptCookies() {
+        localStorage.setItem('cookie-consent', 'accepted');
+        document.getElementById('fallback-cookie-notice').style.display = 'none';
+        loadGoogleAnalytics();
+        console.log('✅ Cookies accepted via fallback');
+      }
+      
+      function declineCookies() {
+        localStorage.setItem('cookie-consent', 'declined');
+        document.getElementById('fallback-cookie-notice').style.display = 'none';
+        console.log('❌ Cookies declined via fallback');
+      }
+      
+      // Sjekk om vi trenger fallback
+      setTimeout(() => {
+        const hasConsent = localStorage.getItem('cookie-consent');
+        const klaroConsent = localStorage.getItem('nails-sara-sofie-klaro');
+        
+        // Hvis Klaro ikke har lastet OG vi ikke har samtykke fra før
+        if (typeof klaro === 'undefined' && !hasConsent && !klaroConsent) {
+          console.log('⚠️ Klaro not loaded, showing fallback notice');
+          document.getElementById('fallback-cookie-notice').style.display = 'block';
+        }
+      }, 3000); // Vent 3 sekunder før fallback aktiveres
+    </script>
+    
     <script src={`${import.meta.env.BASE_URL}src/scripts/modal.js`}></script>
   </body>
 </html> 
