@@ -5,12 +5,16 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import '../styles/globals.css';
 
-// Gallery images with descriptive alt text
-const galleryImages = [
-  { file: 'IMG_2285.jpg', alt: 'Elegant rosa gelenegler med glitter på nagelspissene' },
+// Gellakk images
+const gellakkImages = [
   { file: 'IMG_2292.jpg', alt: 'Klassiske franske manikyr med hvite spisser på naturlige negler' }, 
-  { file: 'IMG_2293.jpg', alt: 'Kreative negldesign med mønstre og fargekombinasjoner' },
   { file: 'IMG_2294.jpg', alt: 'Langtidsholdbar gellakk i nude og rosa toner' },
+];
+
+// Gelenegler images  
+const geleneglerImages = [
+  { file: 'IMG_2285.jpg', alt: 'Elegant rosa gelenegler med glitter på nagelspissene' },
+  { file: 'IMG_2293.jpg', alt: 'Kreative negldesign med mønstre og fargekombinasjoner' },
   { file: 'IMG_2295.jpg', alt: 'Profesjonelle gelenegler med perfekt finish og glans' }
 ];
 ---
@@ -29,19 +33,53 @@ const galleryImages = [
         til gelenegler, gellakk og negldesign som vi kan lage for deg.
       </p>
       
-      <!-- Gallery Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryImages.map((image, index) => (
-          <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
-            <img 
-              src={`${import.meta.env.BASE_URL}galleri/${image.file}`}
-              alt={image.alt}
-              class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              loading={index < 3 ? "eager" : "lazy"}
-            />
-          </div>
-        ))}
-      </div>
+      <!-- Gellakk Section -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-serif text-center mb-3">Gellakk</h2>
+        <p class="text-center intro-text mb-8 max-w-xl mx-auto">
+          Langtidsholdbar gellakk som gir perfekt finish og glans i opptil 3 uker. 
+          Ideelt for deg som ønsker naturlig og elegant neglutseende.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {gellakkImages.map((image, index) => (
+            <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
+              <img 
+                src={`${import.meta.env.BASE_URL}galleri/gellakk/${image.file}`}
+                alt={image.alt}
+                class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                loading={index < 3 ? "eager" : "lazy"}
+                data-modal-image={`${import.meta.env.BASE_URL}galleri/gellakk/${image.file}`}
+                data-modal-alt={image.alt}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Gelenegler Section -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-serif text-center mb-3">Gelenegler</h2>
+        <p class="text-center intro-text mb-8 max-w-xl mx-auto">
+          Profesjonelle gelenegler som gir deg lengde, styrke og mulighet for kreative design. 
+          Perfekt for deg som ønsker spektakulære negler som holder i ukevis.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {geleneglerImages.map((image, index) => (
+            <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
+              <img 
+                src={`${import.meta.env.BASE_URL}galleri/gelenegler/${image.file}`}
+                alt={image.alt}
+                class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                loading={index < 3 ? "eager" : "lazy"}
+                data-modal-image={`${import.meta.env.BASE_URL}galleri/gelenegler/${image.file}`}
+                data-modal-alt={image.alt}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
       <!-- CTA Section -->
       <section class="text-center mt-16 p-8 bg-pink rounded-xl2">
@@ -58,6 +96,25 @@ const galleryImages = [
       </section>
     </div>
   </main>
+
+  <!-- Image Modal -->
+  <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 items-center justify-center p-4">
+    <div class="relative max-w-4xl max-h-full">
+      <button 
+        id="close-image-modal" 
+        class="absolute -top-10 right-0 text-white text-2xl hover:text-gray-300"
+        aria-label="Lukk bilde"
+      >
+        ✕
+      </button>
+      <img 
+        id="modal-image" 
+        src="" 
+        alt="" 
+        class="max-w-full max-h-full object-contain rounded-lg"
+      />
+    </div>
+  </div>
 
   <Footer />
 </Layout>
