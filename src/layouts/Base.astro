@@ -20,6 +20,35 @@ const structuredData = {
   "name": "Nails by Sara Sofie",
   "description": "Profesjonell neglesalong i Son med gelenegler, gellakk og negldesign. Bestill time enkelt online.",
   "url": "https://nailsbysarasofie.no",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://nailsbysarasofie.no/logo.jpg",
+    "width": 400,
+    "height": 400
+  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://nailsbysarasofie.no/logo.jpg",
+      "width": 1200,
+      "height": 630,
+      "description": "Nails by Sara Sofie - Profesjonell neglesalong i Son"
+    },
+    {
+      "@type": "ImageObject", 
+      "url": "https://nailsbysarasofie.no/galleri/gelenegler/gelenegler_1.jpg",
+      "width": 800,
+      "height": 600,
+      "description": "Gelenegler behandling hos Nails by Sara Sofie"
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://nailsbysarasofie.no/galleri/gellakk/gellakk_1.jpg", 
+      "width": 800,
+      "height": 600,
+      "description": "Gellakk behandling hos Nails by Sara Sofie"
+    }
+  ],
   "telephone": "",
   "email": "post@nailsbysarasofie.no",
   "address": {
@@ -60,6 +89,26 @@ const structuredData = {
   "sameAs": [
     "https://www.instagram.com/nails_sarasofie"
   ],
+  "url": "https://nailsbysarasofie.no",
+  "mainEntityOfPage": "https://nailsbysarasofie.no",
+  "potentialAction": [
+    {
+      "@type": "ReserveAction",
+      "name": "Book time",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": "Neglbehandling reservasjon"
+      }
+    }
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Negltjenester",
@@ -69,30 +118,39 @@ const structuredData = {
         "itemOffered": {
           "@type": "Service",
           "name": "Gelenegler, nytt sett",
-          "description": "Helt nye gelenegler med ønsket lengde og design"
+          "description": "Helt nye gelenegler med ønsket lengde og design",
+          "image": "https://nailsbysarasofie.no/galleri/gelenegler/gelenegler_1.jpg"
         },
         "price": "400",
-        "priceCurrency": "NOK"
+        "priceCurrency": "NOK",
+        "availability": "http://schema.org/InStock",
+        "url": "https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801"
       },
       {
         "@type": "Offer", 
         "itemOffered": {
           "@type": "Service",
           "name": "Gelenegler, påfyll",
-          "description": "Vedlikehold og påfyll av eksisterende gelenegler"
+          "description": "Vedlikehold og påfyll av eksisterende gelenegler",
+          "image": "https://nailsbysarasofie.no/galleri/gelenegler/gelenegler_2.jpg"
         },
         "price": "300",
-        "priceCurrency": "NOK"
+        "priceCurrency": "NOK",
+        "availability": "http://schema.org/InStock",
+        "url": "https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801"
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service", 
           "name": "Gellakk, nytt sett",
-          "description": "Langtidsholdbar lakk på naturlige negler"
+          "description": "Langtidsholdbar lakk på naturlige negler",
+          "image": "https://nailsbysarasofie.no/galleri/gellakk/gellakk_1.jpg"
         },
         "price": "200",
-        "priceCurrency": "NOK"
+        "priceCurrency": "NOK",
+        "availability": "http://schema.org/InStock",
+        "url": "https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801"
       }
     ]
   }
@@ -103,9 +161,17 @@ const structuredData = {
 <html lang="no">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <!-- Mobile optimization -->
+    <meta name="theme-color" content="#F3C7D7" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Nails by Sara Sofie" />
+    <meta name="format-detection" content="telephone=no" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
@@ -119,11 +185,33 @@ const structuredData = {
     <!-- Keywords for local SEO -->
     <meta name="keywords" content="neglesalong Son, gelenegler Son, gellakk Son, neglbehandling Son, nails Son, neglstudio Akershus, neglesalong Moss, negldesign Son" />
     
+    <!-- Additional metadata for rich snippets -->
+    <meta name="author" content="Nails by Sara Sofie" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+    
+    <!-- Business information -->
+    <meta name="business:contact_data:street_address" content="Plankesvingen 2" />
+    <meta name="business:contact_data:locality" content="Son" />
+    <meta name="business:contact_data:region" content="Akershus" />
+    <meta name="business:contact_data:postal_code" content="1555" />
+    <meta name="business:contact_data:country_name" content="Norway" />
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('logo.jpg', Astro.site)} />
+    <meta property="og:image:alt" content="Nails by Sara Sofie - Logo" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Additional images for rich previews -->
+    <meta property="og:image" content={new URL('galleri/gelenegler/gelenegler_1.jpg', Astro.site)} />
+    <meta property="og:image:alt" content="Gelenegler behandling - Nails by Sara Sofie" />
+    <meta property="og:image" content={new URL('galleri/gellakk/gellakk_1.jpg', Astro.site)} />
+    <meta property="og:image:alt" content="Gellakk behandling - Nails by Sara Sofie" />
     <meta property="og:locale" content="nb_NO" />
     <meta property="og:site_name" content="Nails by Sara Sofie" />
     
@@ -132,11 +220,14 @@ const structuredData = {
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL('logo.jpg', Astro.site)} />
+    <meta property="twitter:image:alt" content="Nails by Sara Sofie - Logo" />
     
     <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href={`${import.meta.env.BASE_URL}logo.jpg`} sizes="any" />
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
-    <link rel="icon" type="image/jpeg" href={`${import.meta.env.BASE_URL}logo.jpg`} />
     <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}logo.jpg`} />
+    <link rel="mask-icon" href={`${import.meta.env.BASE_URL}logo.jpg`} color="#F3C7D7" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
