@@ -143,53 +143,61 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
     
-    <!-- Simple GDPR Cookie Consent -->
+    <!-- Google Analytics 4 - For verifikasjon og GDPR-compliant tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K"></script>
     <script>
+      // Global site tag setup
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      
+      // GDPR-compliant: Start med consent DENIED
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      
+      gtag('js', new Date());
+      gtag('config', 'G-TQKDPTFG2K', {
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false
+      });
+      
+      console.log('📊 Google Analytics loaded (tracking disabled until consent)');
+      
       // Enkel og pålitelig cookie-samtykke løsning
       
-      // Google Analytics funksjonalitet
+      // Aktiver Google Analytics tracking
       window.loadGoogleAnalytics = function() {
-        if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
-          console.log('Google Analytics already loaded');
-          return;
-        }
-        
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K';
-        document.head.appendChild(script);
-        
-        script.onload = function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          
-          gtag('js', new Date());
-          gtag('config', 'G-TQKDPTFG2K', {
-            'anonymize_ip': true,
-            'allow_google_signals': false,
-            'allow_ad_personalization_signals': false
+        if (typeof window.gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
           });
-          
-          console.log('✅ Google Analytics loaded');
-        };
+          console.log('✅ Google Analytics tracking enabled');
+        }
       };
 
       window.disableGoogleAnalytics = function() {
-        // Slett Google Analytics cookies
+        if (typeof window.gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
+        }
+        
+        // Slett eksisterende Google Analytics cookies
         const cookies = ['_ga', '_gid', '_gat_gtag_G_TQKDPTFG2K'];
         cookies.forEach(name => {
           document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
           document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         });
         
-        if (typeof window.gtag === 'function') {
-          window.gtag('consent', 'update', {
-            'analytics_storage': 'denied'
-          });
-        }
-        
-        console.log('❌ Google Analytics disabled');
+        console.log('❌ Google Analytics tracking disabled');
       };
 
       // Cookie banner funksjonalitet
