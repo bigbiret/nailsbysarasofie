@@ -5,13 +5,13 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import '../styles/globals.css';
 
-// Gallery images
+// Gallery images with descriptive alt text
 const galleryImages = [
-  'IMG_2285.jpg',
-  'IMG_2292.jpg', 
-  'IMG_2293.jpg',
-  'IMG_2294.jpg',
-  'IMG_2295.jpg'
+  { file: 'IMG_2285.jpg', alt: 'Elegant rosa gelenegler med glitter på nagelspissene' },
+  { file: 'IMG_2292.jpg', alt: 'Klassiske franske manikyr med hvite spisser på naturlige negler' }, 
+  { file: 'IMG_2293.jpg', alt: 'Kreative negldesign med mønstre og fargekombinasjoner' },
+  { file: 'IMG_2294.jpg', alt: 'Langtidsholdbar gellakk i nude og rosa toner' },
+  { file: 'IMG_2295.jpg', alt: 'Profesjonelle gelenegler med perfekt finish og glans' }
 ];
 ---
 
@@ -24,7 +24,7 @@ const galleryImages = [
   <main class="py-8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-serif text-center mb-4">Galleri</h1>
-      <p class="text-center text-taupe mb-12 max-w-2xl mx-auto">
+      <p class="text-center intro-text mb-12 max-w-2xl mx-auto">
         Se eksempler på vårt arbeid fra neglesalong i Son. Her finner du inspirasjon 
         til gelenegler, gellakk og negldesign som vi kan lage for deg.
       </p>
@@ -32,11 +32,11 @@ const galleryImages = [
       <!-- Gallery Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryImages.map((image, index) => (
-          <div class="aspect-square overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
+          <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
             <img 
-              src={`${import.meta.env.BASE_URL}galleri/${image}`}
-              alt={`Negldesign eksempel ${index + 1} fra neglesalong i Son - Nails by Sara Sofie`}
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              src={`${import.meta.env.BASE_URL}galleri/${image.file}`}
+              alt={image.alt}
+              class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               loading={index < 3 ? "eager" : "lazy"}
             />
           </div>

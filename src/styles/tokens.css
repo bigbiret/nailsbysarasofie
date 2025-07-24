@@ -1,11 +1,15 @@
 :root {
   /* Colors */
   --c-pink: #F3C7D7;
+  --c-pink-strong: #F5A6C4; /* New stronger pink for primary buttons */
+  --c-pink-active: #E58BAE; /* New darker pink for active navigation */
   --c-ivory: #F8F4F1;
   --c-black: #111111;
   --c-nude: #F2C2AE;
   --c-gold: #C8A96A;
   --c-taupe: #B9B0A8;
+  --c-taupe-dark: #6E5F5B; /* New darker taupe for better contrast */
+  --c-footer-link: #666; /* New color for footer links */
 
   /* Typography */
   --ff-serif: 'Playfair Display', serif;
@@ -20,12 +24,13 @@
   --radius: 1rem;
   --shadow: 0 8px 24px rgba(0,0,0,.08);
   
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
+  /* Spacing - 8px scale */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 3rem;     /* 48px */
+  --space-2xl: 4rem;    /* 64px */
   
   /* Breakpoints */
   --bp-sm: 640px;

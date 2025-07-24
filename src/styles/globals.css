@@ -8,11 +8,20 @@ html {
 }
 
 body { 
-  @apply bg-ivory text-coal font-sans leading-relaxed; 
+  @apply bg-ivory text-coal font-sans;
+  font-weight: 400; /* Strengthened from 300 to 400 */
+  line-height: 1.6; /* Improved line height for readability */
 }
 
 h1, h2, h3, h4 { 
   @apply font-serif tracking-tight text-coal; 
+}
+
+/* Improved contrast for intro text and descriptions */
+.intro-text,
+.card-description,
+.text-taupe {
+  color: #6E5F5B; /* Improved contrast from #B9B0A8 to #6E5F5B */
 }
 
 /* Button components */
@@ -21,7 +30,16 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary { 
-  @apply bg-pink text-coal hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-pink focus:ring-opacity-50; 
+  background: #F5A6C4; /* Stronger pink background */
+  color: #fff; /* White text for better contrast */
+  @apply hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-pink-strong focus:ring-opacity-50; 
+}
+
+.btn-secondary {
+  background: #fff; /* White background */
+  border: 2px solid #F5A6C4; /* Pink border */
+  color: #F5A6C4; /* Pink text */
+  @apply hover:bg-pink-strong hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-strong focus:ring-opacity-50 transition-all duration-200;
 }
 
 .btn-outline { 
@@ -32,9 +50,35 @@ h1, h2, h3, h4 {
   @apply px-3 py-2 text-sm; 
 }
 
-/* Card component */
+/* Card component with 8px scale spacing */
 .card { 
-  @apply bg-ivory shadow-soft rounded-xl2 p-6; 
+  @apply bg-ivory shadow-soft rounded-xl2;
+  padding: 24px; /* 3 × 8px = 24px */
+}
+
+/* Section spacing following 8px scale */
+section {
+  margin-bottom: 64px; /* 8 × 8px = 64px */
+}
+
+/* Gallery image standardization */
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Improved footer link readability */
+.footer a {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Improved navigation active state */
+.nav a.active {
+  color: #E58BAE; /* Darker pink for better contrast */
+  text-decoration: underline;
 }
 
 /* Clean CSS - overflødig Klaro og Modal styling fjernet */ 

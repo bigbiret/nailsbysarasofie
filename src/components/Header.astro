@@ -36,25 +36,25 @@ function isActive(path: string) {
       <nav class="hidden md:flex space-x-8">
         <a 
           href={import.meta.env.BASE_URL} 
-          class={`transition-colors ${isActive('') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Hjem
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}tjenester`} 
-          class={`transition-colors ${isActive('tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('tjenester') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Tjenester
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}galleri`} 
-          class={`transition-colors ${isActive('galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('galleri') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Galleri
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}kontakt`} 
-          class={`transition-colors ${isActive('kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('kontakt') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Kontakt
         </a>
@@ -84,25 +84,25 @@ function isActive(path: string) {
       <div class="py-4 space-y-2">
         <a 
           href={import.meta.env.BASE_URL} 
-          class={`block py-2 transition-colors ${isActive('') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Hjem
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}tjenester`} 
-          class={`block py-2 transition-colors ${isActive('tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('tjenester') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Tjenester
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}galleri`} 
-          class={`block py-2 transition-colors ${isActive('galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('galleri') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Galleri
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}kontakt`} 
-          class={`block py-2 transition-colors ${isActive('kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('kontakt') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
         >
           Kontakt
         </a>
