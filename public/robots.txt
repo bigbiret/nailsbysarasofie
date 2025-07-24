@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bigbiret.github.io/nailsbysarasofie/sitemap-index.xml 
+# Sitemap for neglesalong i Son
+Sitemap: https://nailsbysarasofie.no/sitemap-index.xml 

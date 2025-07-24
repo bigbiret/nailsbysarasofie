@@ -14,8 +14,8 @@ function isActive(path: string) {
     return normalizedCurrentPath === '/' || normalizedCurrentPath === '';
   }
   
-  // Normalize the path parameter by removing trailing slash
-  const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
+  // Ensure path has leading slash for comparison
+  const normalizedPath = path.startsWith('/') ? path : '/' + path;
   
   // Check if paths match
   return normalizedCurrentPath === normalizedPath;
@@ -42,19 +42,19 @@ function isActive(path: string) {
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}tjenester`} 
-          class={`transition-colors ${isActive('/tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Tjenester
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}galleri`} 
-          class={`transition-colors ${isActive('/galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Galleri
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}kontakt`} 
-          class={`transition-colors ${isActive('/kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`transition-colors ${isActive('kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Kontakt
         </a>
@@ -90,19 +90,19 @@ function isActive(path: string) {
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}tjenester`} 
-          class={`block py-2 transition-colors ${isActive('/tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('tjenester') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Tjenester
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}galleri`} 
-          class={`block py-2 transition-colors ${isActive('/galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('galleri') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Galleri
         </a>
         <a 
           href={`${import.meta.env.BASE_URL}kontakt`} 
-          class={`block py-2 transition-colors ${isActive('/kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
+          class={`block py-2 transition-colors ${isActive('kontakt') ? 'text-pink' : 'text-coal hover:text-pink'}`}
         >
           Kontakt
         </a>

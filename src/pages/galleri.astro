@@ -5,19 +5,19 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import '../styles/globals.css';
 
-// Liste over galleri-bilder
+// Gallery images
 const galleryImages = [
-  { src: `${import.meta.env.BASE_URL}galleri/IMG_2295.jpg`, alt: 'Negledesign 1' },
-  { src: `${import.meta.env.BASE_URL}galleri/IMG_2294.jpg`, alt: 'Negledesign 2' },
-  { src: `${import.meta.env.BASE_URL}galleri/IMG_2293.jpg`, alt: 'Negledesign 3' },
-  { src: `${import.meta.env.BASE_URL}galleri/IMG_2292.jpg`, alt: 'Negledesign 4' },
-  { src: `${import.meta.env.BASE_URL}galleri/IMG_2285.jpg`, alt: 'Negledesign 5' }
+  'IMG_2285.jpg',
+  'IMG_2292.jpg', 
+  'IMG_2293.jpg',
+  'IMG_2294.jpg',
+  'IMG_2295.jpg'
 ];
 ---
 
 <Layout 
-  title="Galleri - Nails by Sara Sofie" 
-  description="Se bilder av vårt arbeid og få inspirasjon til dine negler. Profesjonell neglpleie hos Nails by Sara Sofie."
+  title="Galleri - Negldesign fra vår neglesalong i Son | Nails by Sara Sofie"
+  description="Se våre vakre negldesign og gelenegler fra Nails by Sara Sofie neglesalong i Son. Inspirasjon for ditt neste besøk hos oss."
 >
   <Header />
   
@@ -25,66 +25,39 @@ const galleryImages = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-serif text-center mb-4">Galleri</h1>
       <p class="text-center text-taupe mb-12 max-w-2xl mx-auto">
-        Se eksempler på vårt arbeid og la deg inspirere til ditt neste negledesign.
+        Se eksempler på vårt arbeid fra neglesalong i Son. Her finner du inspirasjon 
+        til gelenegler, gellakk og negldesign som vi kan lage for deg.
       </p>
       
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryImages.map((image, index) => (
-          <div class="aspect-square overflow-hidden rounded-xl group cursor-pointer hover:shadow-soft transition-all duration-300">
+          <div class="aspect-square overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
             <img 
-              src={image.src} 
-              alt={image.alt}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-              data-modal-image={image.src}
-              data-modal-alt={image.alt}
+              src={`${import.meta.env.BASE_URL}galleri/${image}`}
+              alt={`Negldesign eksempel ${index + 1} fra neglesalong i Son - Nails by Sara Sofie`}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading={index < 3 ? "eager" : "lazy"}
             />
           </div>
         ))}
       </div>
 
-      <!-- Instagram CTA -->
-      <section class="text-center p-8 bg-ivory rounded-xl2">
-        <h2 class="text-2xl font-serif mb-4">Følg oss på Instagram</h2>
-        <p class="text-taupe mb-6">
-          Se de nyeste bildene og få daglig inspirasjon på vår Instagram-konto
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="outline" href="instagram://user?username=nails_sarasofie" class="flex items-center gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            Følg oss
-          </Button>
-          <Button href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book time</Button>
-        </div>
+      <!-- CTA Section -->
+      <section class="text-center mt-16 p-8 bg-pink rounded-xl2">
+        <h2 class="text-2xl font-serif mb-4">Liker du det du ser?</h2>
+        <p class="mb-6">Book din time hos vår neglesalong i Son og få profesjonell neglbehandling!</p>
+        <a 
+          href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="btn bg-coal text-ivory hover:bg-coal/90"
+        >
+          Book time nå
+        </a>
       </section>
     </div>
   </main>
-
-
-
-  <!-- Image Modal -->
-  <div id="image-modal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4">
-    <div class="relative max-w-4xl max-h-[90vh] w-full">
-      <button 
-        id="close-image-modal" 
-        class="absolute -top-10 right-0 text-white hover:text-pink transition-colors z-10"
-        aria-label="Lukk bilde"
-      >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-      <img 
-        id="modal-image" 
-        src="" 
-        alt="" 
-        class="w-full h-full object-contain rounded-lg"
-      />
-    </div>
-  </div>
 
   <Footer />
 </Layout>

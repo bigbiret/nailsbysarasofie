@@ -2,12 +2,101 @@
 export interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const { 
-  title = 'Nails by Sara Sofie', 
-  description = 'Neglsalong i Son – bestill time enkelt hos Nails by Sara Sofie. Profesjonell neglpleie og design.' 
+  title = 'Nails by Sara Sofie - Neglesalong i Son', 
+  description = 'Profesjonell neglesalong i Son. Gelenegler, gellakk og negldesign hos Nails by Sara Sofie. Book time online - Plankesvingen 2, 1555 Son.',
+  canonical
 } = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+
+// Strukturerte data for LocalBusiness/BeautySalon
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "BeautySalon"],
+  "name": "Nails by Sara Sofie",
+  "description": "Profesjonell neglesalong i Son med gelenegler, gellakk og negldesign. Bestill time enkelt online.",
+  "url": "https://nailsbysarasofie.no",
+  "telephone": "",
+  "email": "post@nailsbysarasofie.no",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Plankesvingen 2",
+    "addressLocality": "Son",
+    "postalCode": "1555",
+    "addressRegion": "Akershus",
+    "addressCountry": "NO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "59.51543797470495",
+    "longitude": "10.68361047725128"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Son"
+    },
+    {
+      "@type": "City", 
+      "name": "Moss"
+    },
+    {
+      "@type": "City",
+      "name": "Vestby"
+    }
+  ],
+  "serviceType": ["Gelenegler", "Gellakk", "Negldesign", "Neglpleie"],
+  "priceRange": "80-400 NOK",
+  "paymentAccepted": "Cash, Card",
+  "currenciesAccepted": "NOK",
+  "founder": {
+    "@type": "Person",
+    "name": "Sara Sofie"
+  },
+  "sameAs": [
+    "https://www.instagram.com/nails_sarasofie"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Negltjenester",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gelenegler, nytt sett",
+          "description": "Helt nye gelenegler med ønsket lengde og design"
+        },
+        "price": "400",
+        "priceCurrency": "NOK"
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gelenegler, påfyll",
+          "description": "Vedlikehold og påfyll av eksisterende gelenegler"
+        },
+        "price": "300",
+        "priceCurrency": "NOK"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Gellakk, nytt sett",
+          "description": "Langtidsholdbar lakk på naturlige negler"
+        },
+        "price": "200",
+        "priceCurrency": "NOK"
+      }
+    ]
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -18,15 +107,29 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Local SEO Meta Tags -->
+    <meta name="geo.region" content="NO-02" />
+    <meta name="geo.placename" content="Son, Akershus" />
+    <meta name="geo.position" content="59.51543797470495;10.68361047725128" />
+    <meta name="ICBM" content="59.51543797470495, 10.68361047725128" />
+    
+    <!-- Keywords for local SEO -->
+    <meta name="keywords" content="neglesalong Son, gelenegler Son, gellakk Son, neglbehandling Son, nails Son, neglstudio Akershus, neglesalong Moss, negldesign Son" />
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content="nb_NO" />
+    <meta property="og:site_name" content="Nails by Sara Sofie" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     
@@ -39,6 +142,9 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <slot />
