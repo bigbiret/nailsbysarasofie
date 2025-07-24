@@ -37,21 +37,30 @@ import '../styles/globals.css';
         <p class="text-center intro-text mb-12 max-w-2xl mx-auto">
           Som en ledende neglesalong i Son tilbyr vi et komplett utvalg av neglbehandlinger og design
         </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <!-- Service cards -->
           <div class="card text-center">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
+              <img 
+                src={`${import.meta.env.BASE_URL}galleri/gellakk/gellakk_2.jpg`}
+                alt="Gellakk behandling"
+                class="w-full h-full object-cover"
+              />
+            </div>
             <h3 class="font-serif text-xl mb-2">Gellakk, nytt sett</h3>
             <p class="card-description mb-4">200 kr</p>
             <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
           </div>
           <div class="card text-center">
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
+              <img 
+                src={`${import.meta.env.BASE_URL}galleri/gelenegler/gelenegler_2.jpg`}
+                alt="Gelenegler behandling"
+                class="w-full h-full object-cover"
+              />
+            </div>
             <h3 class="font-serif text-xl mb-2">Gelenegler, nytt sett</h3>
             <p class="card-description mb-4">400 kr</p>
-            <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
-          </div>
-          <div class="card text-center">
-            <h3 class="font-serif text-xl mb-2">Gelenegler, påfyll</h3>
-            <p class="card-description mb-4">300 kr</p>
             <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
           </div>
         </div>
