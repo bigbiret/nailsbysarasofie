@@ -3,7 +3,6 @@ import Layout from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
-import Modal from '../components/Modal.astro';
 import '../styles/globals.css';
 
 // Liste over galleri-bilder
@@ -58,23 +57,13 @@ const galleryImages = [
             </svg>
             Følg oss
           </Button>
-          <Button data-modal-open="booking-modal">Book time</Button>
+          <Button href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book time</Button>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- Booking Modal -->
-  <Modal id="booking-modal" title="Book time">
-    <div class="text-center py-8">
-      <p class="mb-4">Fresha booking-widget kommer her</p>
-      <iframe 
-        src="about:blank" 
-        class="w-full h-[500px] border-0 rounded-lg"
-        title="Booking system"
-      ></iframe>
-    </div>
-  </Modal>
+
 
   <!-- Image Modal -->
   <div id="image-modal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4">

@@ -4,7 +4,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
-import Modal from '../components/Modal.astro';
 import '../styles/globals.css';
 ---
 
@@ -32,21 +31,21 @@ import '../styles/globals.css';
               <h3 class="font-serif text-lg mb-2">Gelenegler, nytt sett</h3>
               <p class="text-sm text-taupe mb-3">Helt nye gelenegler med ønsket lengde og design</p>
               <p class="text-taupe mb-4 font-semibold">400 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
             
             <Card>
               <h3 class="font-serif text-lg mb-2">Gelenegler, påfyll</h3>
               <p class="text-sm text-taupe mb-3">Vedlikehold og påfyll av eksisterende gelenegler</p>
               <p class="text-taupe mb-4 font-semibold">300 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
             
             <Card>
               <h3 class="font-serif text-lg mb-2">Gellakk, nytt sett</h3>
               <p class="text-sm text-taupe mb-3">Langtidsholdbar lakk på naturlige negler</p>
               <p class="text-taupe mb-4 font-semibold">200 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
           </div>
         </section>
@@ -59,21 +58,21 @@ import '../styles/globals.css';
               <h3 class="font-serif text-lg mb-2">Fjerning av gelenegler</h3>
               <p class="text-sm text-taupe mb-3">Sikker og skånsom fjerning av gelenegler</p>
               <p class="text-taupe mb-4 font-semibold">200 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
             
             <Card>
               <h3 class="font-serif text-lg mb-2">Fjerning av gellakk</h3>
               <p class="text-sm text-taupe mb-3">Profesjonell fjerning av gellakk</p>
               <p class="text-taupe mb-4 font-semibold">100 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
             
             <Card>
               <h3 class="font-serif text-lg mb-2">Neglebåndolje</h3>
               <p class="text-sm text-taupe mb-3">Nærende olje for neglebånd og kutikler</p>
               <p class="text-taupe mb-4 font-semibold">80 kr</p>
-              <Button size="sm" data-modal-open="booking-modal">Book</Button>
+              <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
             </Card>
           </div>
         </section>
@@ -84,22 +83,12 @@ import '../styles/globals.css';
       <section class="text-center mt-16 p-8 bg-pink rounded-xl2">
         <h2 class="text-2xl font-serif mb-4">Klar for å booke?</h2>
         <p class="mb-6">Alle priser inkluderer behandling og finish</p>
-        <Button data-modal-open="booking-modal" class="bg-coal text-ivory hover:bg-coal/90">Book din time</Button>
+        <Button href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer" class="bg-coal text-ivory hover:bg-coal/90">Book din time</Button>
       </section>
     </div>
   </main>
 
-  <!-- Booking Modal -->
-  <Modal id="booking-modal" title="Book time">
-    <div class="text-center py-8">
-      <p class="mb-4">Fresha booking-widget kommer her</p>
-      <iframe 
-        src="about:blank" 
-        class="w-full h-[500px] border-0 rounded-lg"
-        title="Booking system"
-      ></iframe>
-    </div>
-  </Modal>
+
 
   <Footer />
 </Layout> 
