@@ -57,7 +57,7 @@
             Personvern
           </a>
                      <button 
-             onclick="if(typeof klaro !== 'undefined') { klaro.getManager().show(); }" 
+             onclick="if(typeof window.showCookieSettings === 'function') { window.showCookieSettings(); }" 
              class="hover:text-ivory transition-colors cursor-pointer"
            >
              Cookie-innstillinger

@@ -143,169 +143,108 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
     
-    <!-- Klaro Cookie Consent -->
-    <script defer src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js" 
-            onerror="console.error('Failed to load Klaro from CDN')"
-            onload="console.log('Klaro loaded successfully')"></script>
+    <!-- Simple GDPR Cookie Consent -->
     <script>
-      // Klaro konfigurasjon for GDPR-compliant samtykke
-      window.klaroConfig = {
-        version: 1,
-        elementID: 'klaro',
-        noAutoLoad: false,
-        htmlTexts: true,
-        embedded: false,
-        groupByPurpose: true,
-        storageMethod: 'localStorage',
-        cookieName: 'nails-sara-sofie-klaro',
-        cookieExpiresAfterDays: 365,
-        default: false,
-        mustConsent: true,
-        acceptAll: true,
-        hideDeclineAll: false,
-        hideLearnMore: false,
-        
-        // Norsk oversettelse
-        translations: {
-          nb: {
-            consentModal: {
-              title: 'Informasjonskapsler og personvern',
-              description: 'Vi bruker informasjonskapsler for å forbedre din opplevelse på nettsiden vår. Du kan velge hvilke kategorier du ønsker å tillate nedenfor.',
-            },
-            consentNotice: {
-              changeDescription: 'Det har skjedd endringer siden du sist ga samtykke. Vennligst oppdater ditt samtykke.',
-              description: 'Vi bruker informasjonskapsler og lignende teknologier for å forbedre din opplevelse. Ved å klikke "Aksepter alle" samtykker du til bruk av alle informasjonskapsler.',
-              learnMore: 'Tilpass innstillinger',
-              acceptAll: 'Aksepter alle',
-              declineAll: 'Avvis alle'
-            },
-            ok: 'Aksepter',
-            save: 'Lagre innstillinger',
-            decline: 'Avvis',
-            close: 'Lukk',
-            acceptAll: 'Aksepter alle',
-            acceptSelected: 'Aksepter valgte',
-            declineAll: 'Avvis alle',
-            app: {
-              required: {
-                title: 'Nødvendige',
-                description: 'Disse informasjonskapslene er nødvendige for at nettsiden skal fungere og kan ikke deaktiveres.'
-              },
-              analytics: {
-                title: 'Analyse',
-                description: 'Hjelper oss å forstå hvordan besøkende bruker nettsiden, slik at vi kan forbedre brukeropplevelsen.'
-              }
-            },
-            purposes: {
-              analytics: 'Analyse',
-              functional: 'Funksjonalitet'
-            }
-          }
-        },
-        
-        // Tjenester som krever samtykke
-        services: [
-          {
-            name: 'google-analytics',
-            title: 'Google Analytics',
-            description: 'Webanalyse for å forstå besøksmønstre og forbedre nettsiden.',
-            purposes: ['analytics'],
-            required: false,
-            optOut: false,
-            onlyOnce: false,
-            default: false,
-            cookies: [
-              // Google Analytics cookies
-              [/^_ga(_.*)?/, '/', 'google-analytics'],
-              [/^_gid/, '/', 'google-analytics'],
-              [/^_gat/, '/', 'google-analytics']
-            ],
-            callback: function(consent, service) {
-              console.log('Google Analytics consent:', consent);
-              if (consent) {
-                // Aktiver Google Analytics når samtykke er gitt
-                if (typeof window.loadGoogleAnalytics === 'function') {
-                  window.loadGoogleAnalytics();
-                } else {
-                  console.error('loadGoogleAnalytics function not found');
-                }
-              } else {
-                // Deaktiver Google Analytics hvis samtykke trekkes tilbake
-                if (typeof window.disableGoogleAnalytics === 'function') {
-                  window.disableGoogleAnalytics();
-                } else {
-                  console.error('disableGoogleAnalytics function not found');
-                }
-              }
-            }
-          }
-        ]
-      };
-
-      // Global funksjon for å laste Google Analytics
-      window.loadGoogleAnalytics = function() {
-        // Last Google Analytics script
-        if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
-          const script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K';
-          document.head.appendChild(script);
-          
-          script.onload = function() {
-            // Initialiser Google Analytics
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            
-            gtag('js', new Date());
-            gtag('config', 'G-TQKDPTFG2K', {
-              'anonymize_ip': true,
-              'allow_google_signals': false,
-              'allow_ad_personalization_signals': false
-            });
-            
-            console.log('✅ Google Analytics aktivert med samtykke');
-          };
-        } else {
-          console.log('ℹ️ Google Analytics allerede lastet');
-        }
-      };
-
-      // Global funksjon for å deaktivere Google Analytics
-      window.disableGoogleAnalytics = function() {
-        // Sett Google Analytics disable flag
-        window['ga-disable-G-TQKDPTFG2K'] = true;
-        console.log('❌ Google Analytics deaktivert');
-      };
-
-      // Debug og initialiser Klaro
-      console.log('Klaro config loaded:', window.klaroConfig);
+      // Enkel og pålitelig cookie-samtykke løsning
       
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM loaded, checking for Klaro...');
+      // Google Analytics funksjonalitet
+      window.loadGoogleAnalytics = function() {
+        if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+          console.log('Google Analytics already loaded');
+          return;
+        }
         
-        // Vent til Klaro er tilgjengelig (max 10 sekunder)
-        let attempts = 0;
-        const maxAttempts = 100;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K';
+        document.head.appendChild(script);
         
-        const checkKlaro = setInterval(() => {
-          attempts++;
+        script.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
           
-          if (typeof klaro !== 'undefined') {
-            clearInterval(checkKlaro);
-            console.log('✅ Klaro found! Initializing...');
-            
-            try {
-              klaro.getManager().setLanguage('nb');
-              console.log('✅ Klaro language set to Norwegian');
-            } catch (error) {
-              console.error('❌ Error setting Klaro language:', error);
-            }
-          } else if (attempts >= maxAttempts) {
-            clearInterval(checkKlaro);
-            console.error('❌ Klaro failed to load after 10 seconds');
-          }
-        }, 100);
+          gtag('js', new Date());
+          gtag('config', 'G-TQKDPTFG2K', {
+            'anonymize_ip': true,
+            'allow_google_signals': false,
+            'allow_ad_personalization_signals': false
+          });
+          
+          console.log('✅ Google Analytics loaded');
+        };
+      };
+
+      window.disableGoogleAnalytics = function() {
+        // Slett Google Analytics cookies
+        const cookies = ['_ga', '_gid', '_gat_gtag_G_TQKDPTFG2K'];
+        cookies.forEach(name => {
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+        
+        if (typeof window.gtag === 'function') {
+          window.gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+          });
+        }
+        
+        console.log('❌ Google Analytics disabled');
+      };
+
+      // Cookie banner funksjonalitet
+      function showCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) {
+          banner.style.display = 'block';
+          banner.style.animation = 'slideUp 0.5s ease-out';
+        }
+      }
+
+      function hideCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        if (banner) {
+          banner.style.animation = 'slideDown 0.5s ease-out';
+          setTimeout(() => {
+            banner.style.display = 'none';
+          }, 500);
+        }
+      }
+
+      window.acceptCookies = function() {
+        localStorage.setItem('cookie-consent', 'accepted');
+        localStorage.setItem('cookie-consent-date', new Date().toISOString());
+        hideCookieBanner();
+        window.loadGoogleAnalytics();
+        console.log('✅ Cookies accepted');
+      };
+
+      window.declineCookies = function() {
+        localStorage.setItem('cookie-consent', 'declined');
+        localStorage.setItem('cookie-consent-date', new Date().toISOString());
+        hideCookieBanner();
+        window.disableGoogleAnalytics();
+        console.log('❌ Cookies declined');
+      };
+
+      window.showCookieSettings = function() {
+        // Fjern eksisterende samtykke og vis banner igjen
+        localStorage.removeItem('cookie-consent');
+        showCookieBanner();
+      };
+
+      // Initialiser når DOM er klar
+      document.addEventListener('DOMContentLoaded', function() {
+        const consent = localStorage.getItem('cookie-consent');
+        
+        if (consent === 'accepted') {
+          window.loadGoogleAnalytics();
+        } else if (consent === 'declined') {
+          window.disableGoogleAnalytics();
+        } else {
+          // Vis banner etter 2 sekunder
+          setTimeout(showCookieBanner, 2000);
+        }
       });
     </script>
     
@@ -315,48 +254,83 @@ const structuredData = {
   <body>
     <slot />
     
-    <!-- Fallback cookie-notice hvis Klaro feiler -->
-    <div id="fallback-cookie-notice" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #F8F4F1; border-top: 1px solid #B9B0A8; padding: 1rem; z-index: 9999; font-family: 'Inter', sans-serif; color: #111111;">
+    <!-- Simple Cookie Banner -->
+    <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #F8F4F1; border-top: 1px solid #B9B0A8; padding: 1.5rem; z-index: 9999; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);">
       <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <div style="flex: 1; min-width: 300px;">
-          <strong>🍪 Informasjonskapsler</strong><br>
-          <span style="font-size: 0.9rem;">Vi bruker Google Analytics for å forbedre nettsiden. Ønsker du å tillate dette?</span>
+        <div style="flex: 1; min-width: 300px; font-family: 'Inter', sans-serif; color: #111111;">
+          <strong style="display: block; margin-bottom: 0.5rem;">🍪 Informasjonskapsler og personvern</strong>
+          <span style="font-size: 0.9rem; line-height: 1.4; color: #666;">
+            Vi bruker Google Analytics for å forstå hvordan besøkende bruker nettsiden og forbedre brukeropplevelsen. 
+            Informasjonen behandles anonymt og i tråd med GDPR.
+          </span>
         </div>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button onclick="acceptCookies()" style="background: #F3C7D7; color: #111111; border: none; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-weight: 500;">Aksepter</button>
-          <button onclick="declineCookies()" style="background: transparent; color: #B9B0A8; border: 1px solid #B9B0A8; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer;">Avvis</button>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button onclick="acceptCookies()" style="background: #F3C7D7; color: #111111; border: none; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-weight: 500; font-family: 'Inter', sans-serif; transition: all 0.2s; min-width: 100px;">
+            Aksepter alle
+          </button>
+          <button onclick="declineCookies()" style="background: transparent; color: #B9B0A8; border: 1px solid #B9B0A8; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; min-width: 100px;">
+            Avvis alle
+          </button>
         </div>
       </div>
     </div>
 
-    <script>
-      // Fallback functions hvis Klaro feiler
-      function acceptCookies() {
-        localStorage.setItem('cookie-consent', 'accepted');
-        document.getElementById('fallback-cookie-notice').style.display = 'none';
-        window.loadGoogleAnalytics();
-        console.log('✅ Cookies accepted via fallback');
-      }
-      
-      function declineCookies() {
-        localStorage.setItem('cookie-consent', 'declined');
-        document.getElementById('fallback-cookie-notice').style.display = 'none';
-        console.log('❌ Cookies declined via fallback');
-      }
-      
-      // Sjekk om vi trenger fallback
-      setTimeout(() => {
-        const hasConsent = localStorage.getItem('cookie-consent');
-        const klaroConsent = localStorage.getItem('nails-sara-sofie-klaro');
-        
-        // Hvis Klaro ikke har lastet OG vi ikke har samtykke fra før
-        if (typeof klaro === 'undefined' && !hasConsent && !klaroConsent) {
-          console.log('⚠️ Klaro not loaded, showing fallback notice');
-          document.getElementById('fallback-cookie-notice').style.display = 'block';
-        }
-      }, 3000); // Vent 3 sekunder før fallback aktiveres
-    </script>
-    
-    <script src={`${import.meta.env.BASE_URL}src/scripts/modal.js`}></script>
-  </body>
-</html> 
+         <style>
+       @keyframes slideUp {
+         from { transform: translateY(100%); opacity: 0; }
+         to { transform: translateY(0); opacity: 1; }
+       }
+       
+       @keyframes slideDown {
+         from { transform: translateY(0); opacity: 1; }
+         to { transform: translateY(100%); opacity: 0; }
+       }
+       
+       #cookie-banner button:hover {
+         transform: translateY(-1px);
+         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       }
+     </style>
+     
+     <!-- Load modal analytics tracking -->
+     <script>
+       // Inline the modal script to avoid 404 issues
+       document.addEventListener('DOMContentLoaded', function() {
+         console.log('✅ Analytics tracking loaded');
+         
+         // Track booking button clicks for analytics
+         const bookingButtons = document.querySelectorAll('[data-modal-open="booking-modal"]');
+         
+         bookingButtons.forEach(button => {
+           button.addEventListener('click', function() {
+             // Google Analytics event tracking (kun hvis aktivert via samtykke)
+             if (typeof window.gtag !== 'undefined' && window.gtag) {
+               window.gtag('event', 'booking_modal_open', {
+                 'event_category': 'booking',
+                 'event_label': 'modal_open'
+               });
+               console.log('📊 Analytics: Booking modal opened');
+             }
+           });
+         });
+
+         // Track external booking links (Fresha)
+         const externalBookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
+         
+         externalBookingLinks.forEach(link => {
+           link.addEventListener('click', function() {
+             // Google Analytics event tracking (kun hvis aktivert via samtykke)
+             if (typeof window.gtag !== 'undefined' && window.gtag) {
+               window.gtag('event', 'booking_click', {
+                 'event_category': 'booking',
+                 'event_label': 'fresha_external',
+                 'value': 1
+               });
+               console.log('📊 Analytics: External booking link clicked');
+             }
+           });
+         });
+       });
+     </script>
+   </body>
+ </html> 
