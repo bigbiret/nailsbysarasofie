@@ -33,19 +33,12 @@ const { id = 'booking-modal' } = Astro.props;
       <p class="text-sm text-taupe">Dette tar bare et øyeblikk...</p>
     </div>
     
-    <div class="flex gap-3">
+    <div class="flex justify-center">
       <button 
-        class="booking-modal-close flex-1 px-4 py-2 text-sm text-taupe border border-taupe/30 rounded-lg hover:bg-taupe/10 transition-colors"
+        class="booking-modal-close px-6 py-2 text-sm text-taupe border border-taupe/30 rounded-lg hover:bg-taupe/10 transition-colors"
         type="button"
       >
         Avbryt
-      </button>
-      <button 
-        id="booking-continue-btn"
-        class="flex-1 px-4 py-2 text-sm bg-pink text-coal rounded-lg hover:bg-pink/90 transition-colors"
-        type="button"
-      >
-        Fortsett til Fresha
       </button>
     </div>
   </div>
@@ -82,13 +75,7 @@ const { id = 'booking-modal' } = Astro.props;
         }
       });
       
-      // Fortsett til Fresha
-      const continueBtn = document.getElementById('booking-continue-btn');
-      if (continueBtn) {
-        continueBtn.addEventListener('click', () => {
-          this.redirect();
-        });
-      }
+
       
       // Sett opp booking knapper
       this.setupBookingButtons();
@@ -167,8 +154,8 @@ const { id = 'booking-modal' } = Astro.props;
     
     redirect() {
       if (this.redirectUrl) {
-        // Track fortsett-hendelse
-        this.trackEvent('Booking', 'Continue', this.serviceId);
+        // Track auto-redirect hendelse
+        this.trackEvent('Booking', 'AutoRedirect', this.serviceId);
         
         // Redirect til Fresha
         window.location.href = this.redirectUrl;
