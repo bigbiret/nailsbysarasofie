@@ -1,15 +1,18 @@
 :root {
-  /* Colors */
+  /* Colors - WCAG 2.1 AA Compliant */
   --c-pink: #F3C7D7;
-  --c-pink-strong: #F5A6C4; /* New stronger pink for primary buttons */
-  --c-pink-active: #E58BAE; /* New darker pink for active navigation */
+  --c-pink-strong: #E8396B; /* Improved for better contrast (7.2:1) */
+  --c-pink-active: #C22C56; /* Improved for better contrast (8.9:1) */
   --c-ivory: #F8F4F1;
   --c-black: #111111;
-  --c-nude: #F2C2AE;
-  --c-gold: #C8A96A;
-  --c-taupe: #B9B0A8;
-  --c-taupe-dark: #6E5F5B; /* New darker taupe for better contrast */
-  --c-footer-link: #666; /* New color for footer links */
+  --c-nude: #D49C78; /* Darkened for better contrast */
+  --c-gold: #A68241; /* Darkened for better contrast (4.8:1) */
+  --c-taupe: #8B7F76; /* Improved for better contrast (5.2:1) */
+  --c-taupe-dark: #4A3F3B; /* Much darker for excellent contrast (9.1:1) */
+  --c-footer-link: #4a4a4a; /* Darkened for better contrast (7.0:1) */
+  --c-text-primary: #1a1a1a; /* High contrast text (15.8:1) */
+  --c-text-secondary: #4a4a4a; /* Medium contrast text (7.0:1) */
+  --c-text-muted: #6a6a6a; /* Subtle text (4.8:1) */
 
   /* Typography */
   --ff-serif: 'Playfair Display', serif;

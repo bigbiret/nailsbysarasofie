@@ -1,4 +1,6 @@
 ---
+import BookingModal from '../components/BookingModal.astro';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -7,7 +9,7 @@ export interface Props {
 
 const { 
   title = 'Nails by Sara Sofie - Neglesalong i Son', 
-  description = 'Neglesalong i Son med gode priser. Gelenegler, gellakk og negldesign hos Nails by Sara Sofie. Book time online - Plankesvingen 2, 1555 Son.',
+  description = 'Neglesalong i Son med flere behandlinger til gode priser. Gelenegler, gellakk og negldesign hos Nails by Sara Sofie. Book time online - Plankesvingen 2, 1555 Son.',
   canonical
 } = Astro.props;
 
@@ -332,6 +334,33 @@ const structuredData = {
         showCookieBanner();
       };
 
+      // Cookie details modal functions
+      window.showCookieDetails = function() {
+        const modal = document.getElementById('cookie-details-modal');
+        if (modal) {
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.hideCookieDetails = function() {
+        const modal = document.getElementById('cookie-details-modal');
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      };
+
+      window.acceptCookiesAndClose = function() {
+        window.acceptCookies();
+        window.hideCookieDetails();
+      };
+
+      window.declineCookiesAndClose = function() {
+        window.declineCookies();
+        window.hideCookieDetails();
+      };
+
       // Initialiser når DOM er klar
       document.addEventListener('DOMContentLoaded', function() {
         const consent = localStorage.getItem('cookie-consent');
@@ -353,41 +382,296 @@ const structuredData = {
   <body>
     <slot />
     
-    <!-- Simple Cookie Banner -->
-    <div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #F8F4F1; border-top: 1px solid #B9B0A8; padding: 1.5rem; z-index: 9999; box-shadow: 0 -4px 20px rgba(0,0,0,0.1);">
-      <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <div style="flex: 1; min-width: 300px; font-family: 'Inter', sans-serif; color: #111111;">
-          <strong style="display: block; margin-bottom: 0.5rem;">🍪 Informasjonskapsler og personvern</strong>
-          <span style="font-size: 0.9rem; line-height: 1.4; color: #666;">
+    <!-- Booking Modal -->
+    <BookingModal />
+    
+    <!-- Minimal Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+      <div class="cookie-banner-content">
+        <div class="cookie-text">
+          <span class="cookie-icon">🍪</span>
+          <span class="cookie-message">Vi bruker cookies for å forbedre din opplevelse.</span>
+          <button onclick="showCookieDetails()" class="cookie-details-btn" aria-label="Les mer om cookies">
+            Innstillinger
+          </button>
+        </div>
+        <div class="cookie-actions">
+          <button onclick="acceptCookies()" class="cookie-accept">Godta</button>
+          <button onclick="declineCookies()" class="cookie-decline">Avvis</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookie Details Modal -->
+    <div id="cookie-details-modal" class="cookie-modal" style="display: none;">
+      <div class="cookie-modal-backdrop" onclick="hideCookieDetails()"></div>
+      <div class="cookie-modal-content">
+        <div class="cookie-modal-header">
+          <h3>🍪 Informasjonskapsler og personvern</h3>
+          <button onclick="hideCookieDetails()" class="cookie-modal-close" aria-label="Lukk">&times;</button>
+        </div>
+        <div class="cookie-modal-body">
+          <p>
             Vi bruker Google Analytics for å forstå hvordan besøkende bruker nettsiden og forbedre brukeropplevelsen. 
             Informasjonen behandles anonymt og i tråd med GDPR.
-          </span>
+          </p>
+          <p>
+            Du kan når som helst endre dine preferanser ved å klikke på "Cookie-innstillinger" nederst på siden.
+          </p>
         </div>
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <button onclick="acceptCookies()" style="background: #F3C7D7; color: #111111; border: none; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-weight: 500; font-family: 'Inter', sans-serif; transition: all 0.2s; min-width: 100px;">
-            Aksepter alle
-          </button>
-          <button onclick="declineCookies()" style="background: transparent; color: #B9B0A8; border: 1px solid #B9B0A8; padding: 0.75rem 1.5rem; border-radius: 1rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; min-width: 100px;">
-            Avvis alle
-          </button>
+        <div class="cookie-modal-actions">
+          <button onclick="acceptCookiesAndClose()" class="cookie-accept-primary">Godta alle</button>
+          <button onclick="declineCookiesAndClose()" class="cookie-decline-secondary">Avvis alle</button>
         </div>
       </div>
     </div>
 
          <style>
+       /* Cookie Banner Styles */
+       .cookie-banner {
+         position: fixed;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background: #1a1a1a;
+         color: #ffffff;
+         z-index: 9998;
+         border-top: 2px solid #F3C7D7;
+         animation: slideUp 0.3s ease-out;
+       }
+
+       .cookie-banner-content {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 0.75rem 1rem;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 1rem;
+         flex-wrap: wrap;
+       }
+
+       .cookie-text {
+         display: flex;
+         align-items: center;
+         gap: 0.75rem;
+         flex: 1;
+         min-width: 250px;
+       }
+
+       .cookie-icon {
+         font-size: 1.2rem;
+       }
+
+       .cookie-message {
+         font-size: 0.9rem;
+         font-family: 'Inter', sans-serif;
+         color: #ffffff;
+       }
+
+       .cookie-details-btn {
+         background: none;
+         border: none;
+         color: #F3C7D7;
+         text-decoration: underline;
+         cursor: pointer;
+         font-size: 0.8rem;
+         font-family: 'Inter', sans-serif;
+         padding: 0;
+       }
+
+       .cookie-details-btn:hover {
+         color: #ffffff;
+       }
+
+       .cookie-actions {
+         display: flex;
+         gap: 0.5rem;
+         align-items: center;
+       }
+
+       .cookie-accept, .cookie-decline {
+         padding: 0.4rem 0.8rem;
+         border-radius: 0.5rem;
+         font-size: 0.85rem;
+         font-family: 'Inter', sans-serif;
+         cursor: pointer;
+         border: none;
+         transition: all 0.2s;
+       }
+
+       .cookie-accept {
+         background: #F3C7D7;
+         color: #1a1a1a;
+         font-weight: 500;
+       }
+
+       .cookie-accept:hover {
+         background: #e8b6c9;
+       }
+
+       .cookie-decline {
+         background: transparent;
+         color: #cccccc;
+         border: 1px solid #cccccc;
+       }
+
+       .cookie-decline:hover {
+         color: #ffffff;
+         border-color: #ffffff;
+       }
+
+       /* Cookie Modal Styles */
+       .cookie-modal {
+         position: fixed;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         z-index: 10000;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding: 1rem;
+       }
+
+       .cookie-modal-backdrop {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: rgba(0, 0, 0, 0.7);
+         backdrop-filter: blur(4px);
+       }
+
+       .cookie-modal-content {
+         background: #ffffff;
+         border-radius: 1rem;
+         max-width: 500px;
+         width: 100%;
+         position: relative;
+         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+       }
+
+       .cookie-modal-header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 1.5rem 1.5rem 1rem;
+         border-bottom: 1px solid #f0f0f0;
+       }
+
+       .cookie-modal-header h3 {
+         margin: 0;
+         font-size: 1.2rem;
+         font-family: 'Playfair Display', serif;
+         color: #1a1a1a;
+       }
+
+       .cookie-modal-close {
+         background: none;
+         border: none;
+         font-size: 1.5rem;
+         cursor: pointer;
+         color: #666;
+         padding: 0;
+         width: 2rem;
+         height: 2rem;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+       }
+
+       .cookie-modal-close:hover {
+         color: #1a1a1a;
+       }
+
+       .cookie-modal-body {
+         padding: 1rem 1.5rem;
+       }
+
+       .cookie-modal-body p {
+         margin: 0 0 1rem 0;
+         line-height: 1.5;
+         color: #4a4a4a;
+         font-family: 'Inter', sans-serif;
+         font-size: 0.9rem;
+       }
+
+       .cookie-modal-body p:last-child {
+         margin-bottom: 0;
+       }
+
+       .cookie-modal-actions {
+         padding: 1rem 1.5rem 1.5rem;
+         display: flex;
+         gap: 0.75rem;
+         justify-content: flex-end;
+       }
+
+       .cookie-accept-primary, .cookie-decline-secondary {
+         padding: 0.75rem 1.5rem;
+         border-radius: 0.75rem;
+         font-family: 'Inter', sans-serif;
+         font-size: 0.9rem;
+         cursor: pointer;
+         border: none;
+         transition: all 0.2s;
+       }
+
+       .cookie-accept-primary {
+         background: #F3C7D7;
+         color: #1a1a1a;
+         font-weight: 500;
+       }
+
+       .cookie-accept-primary:hover {
+         background: #e8b6c9;
+       }
+
+       .cookie-decline-secondary {
+         background: transparent;
+         color: #666;
+         border: 1px solid #ddd;
+       }
+
+       .cookie-decline-secondary:hover {
+         color: #1a1a1a;
+         border-color: #aaa;
+       }
+
        @keyframes slideUp {
          from { transform: translateY(100%); opacity: 0; }
          to { transform: translateY(0); opacity: 1; }
        }
-       
+
        @keyframes slideDown {
          from { transform: translateY(0); opacity: 1; }
          to { transform: translateY(100%); opacity: 0; }
        }
-       
-       #cookie-banner button:hover {
-         transform: translateY(-1px);
-         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+       @media (max-width: 768px) {
+         .cookie-banner-content {
+           flex-direction: column;
+           align-items: flex-start;
+           gap: 0.75rem;
+         }
+
+         .cookie-text {
+           flex-direction: column;
+           align-items: flex-start;
+           gap: 0.5rem;
+         }
+
+         .cookie-actions {
+           align-self: stretch;
+           justify-content: space-between;
+         }
+
+         .cookie-accept, .cookie-decline {
+           flex: 1;
+         }
        }
      </style>
      

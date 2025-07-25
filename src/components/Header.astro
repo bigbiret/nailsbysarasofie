@@ -33,7 +33,7 @@ function isActive(path: string) {
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex space-x-8">
+      <nav class="hidden md:flex space-x-8" role="navigation" aria-label="Hovednavigasjon">
         <a 
           href={import.meta.env.BASE_URL} 
           class={`transition-colors ${isActive('') ? 'text-pink-active underline' : 'text-coal hover:text-pink-active'}`}
@@ -61,15 +61,14 @@ function isActive(path: string) {
       </nav>
 
       <!-- CTA Button -->
-      <a 
-        href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button 
+        data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801"
+        data-service-id="header-cta"
         class="btn btn-primary" 
         aria-label="Book time"
       >
         Book time
-      </a>
+      </button>
 
       <!-- Mobile menu button -->
       <button class="md:hidden" id="mobile-menu-button">

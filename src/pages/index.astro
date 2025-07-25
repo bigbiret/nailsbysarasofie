@@ -14,7 +14,7 @@ import '../styles/globals.css';
   
   <main>
     <!-- Hero Section -->
-    <section class="bg-ivory py-20">
+    <section class="bg-ivory py-20" role="banner" aria-label="Hovedseksjon med velkommen og booking">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-6xl font-serif text-coal mb-6">
           Velkommen til<br />
@@ -24,18 +24,18 @@ import '../styles/globals.css';
           Din neglesalong i Son med gode priser. Vi tilbyr gelenegler, gellakk og negldesign av god kvalitet. Book din time enkelt og få vakre negler som varer.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book time nå</Button>
+          <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="hero-cta">Book time nå</Button>
           <Button variant="secondary" href={`${import.meta.env.BASE_URL}tjenester`}>Se tjenester</Button>
         </div>
       </div>
     </section>
 
     <!-- Services Preview -->
-    <section class="py-16">
+    <section class="py-16" role="region" aria-labelledby="services-heading">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-serif text-center mb-4">Våre tjenester</h2>
+        <h2 id="services-heading" class="text-3xl font-serif text-center mb-4">Våre tjenester</h2>
         <p class="text-center intro-text mb-12 max-w-2xl mx-auto">
-          Som en ledende neglesalong i Son tilbyr vi et komplett utvalg av neglbehandlinger og design
+          Som en helt ny neglesalong i Son tilbyr vi et komplett utvalg av neglbehandlinger og design
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <!-- Service cards -->
@@ -43,25 +43,25 @@ import '../styles/globals.css';
             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
               <img 
                 src={`${import.meta.env.BASE_URL}galleri/gellakk/gellakk_2.jpg`}
-                alt="Gellakk behandling"
+                alt="Gellakk behandling - Perfekt finish og glans på naturlige negler"
                 class="w-full h-full object-cover"
               />
             </div>
             <h3 class="font-serif text-xl mb-2">Gellakk, nytt sett</h3>
             <p class="card-description mb-4">200 kr</p>
-            <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
+            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gellakk-nytt">Book</Button>
           </div>
           <div class="card text-center">
             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
               <img 
                 src={`${import.meta.env.BASE_URL}galleri/gelenegler/gelenegler_2.jpg`}
-                alt="Gelenegler behandling"
+                alt="Gelenegler behandling - Vakre forlengende gelenegler med kreativt design"
                 class="w-full h-full object-cover"
               />
             </div>
             <h3 class="font-serif text-xl mb-2">Gelenegler, nytt sett</h3>
             <p class="card-description mb-4">400 kr</p>
-            <Button size="sm" href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer">Book</Button>
+            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gelenegler-nytt">Book</Button>
           </div>
         </div>
         <div class="text-center mt-8">
@@ -104,7 +104,7 @@ import '../styles/globals.css';
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-serif text-coal mb-4">Klar for vakre negler?</h2>
         <p class="text-coal mb-8">Book din time hos neglesalong i Son i dag og opplev god neglpleie til gode priser. Vi gleder oss til å se deg på Plankesvingen 2!</p>
-        <Button href="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" target="_blank" rel="noopener noreferrer" class="bg-ivory text-coal shadow-soft hover:shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105">Book time</Button>
+        <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="general" class="bg-ivory text-coal shadow-soft hover:shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105">Book time</Button>
       </div>
     </section>
   </main>

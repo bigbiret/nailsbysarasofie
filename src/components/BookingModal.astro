@@ -1,0 +1,225 @@
+---
+export interface Props {
+  id?: string;
+}
+
+const { id = 'booking-modal' } = Astro.props;
+---
+
+<div 
+  id={id} 
+  class="booking-modal fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] flex items-center justify-center opacity-0 invisible transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="booking-modal-title"
+>
+  <div class="bg-ivory rounded-xl2 shadow-soft max-w-md w-full mx-4 p-6 transform scale-95 transition-transform duration-300">
+    <div class="flex justify-between items-center mb-4">
+      <h2 id="booking-modal-title" class="text-xl font-serif text-coal">Booking</h2>
+      <button 
+        class="booking-modal-close text-2xl text-coal hover:text-pink transition-colors leading-none"
+        aria-label="Lukk modal"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+    
+    <div class="text-center mb-6">
+      <div class="mb-4">
+        <div class="animate-spin inline-block w-8 h-8 border-4 border-pink border-t-transparent rounded-full mb-3"></div>
+      </div>
+      <p class="text-coal mb-2">Du blir nå sendt til Fresha for å fullføre bookingen</p>
+      <p class="text-sm text-taupe">Dette tar bare et øyeblikk...</p>
+    </div>
+    
+    <div class="flex gap-3">
+      <button 
+        class="booking-modal-close flex-1 px-4 py-2 text-sm text-taupe border border-taupe/30 rounded-lg hover:bg-taupe/10 transition-colors"
+        type="button"
+      >
+        Avbryt
+      </button>
+      <button 
+        id="booking-continue-btn"
+        class="flex-1 px-4 py-2 text-sm bg-pink text-coal rounded-lg hover:bg-pink/90 transition-colors"
+        type="button"
+      >
+        Fortsett til Fresha
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Booking modal funksjonalitet
+  class BookingModal {
+    constructor() {
+      this.modal = document.getElementById('booking-modal');
+      this.isVisible = false;
+      this.redirectUrl = '';
+      this.serviceId = '';
+      this.serviceMapping = null;
+      
+      this.init();
+      this.loadServiceMapping();
+    }
+    
+    init() {
+      if (!this.modal) return;
+      
+      // Lukk modal ved klikk på backdrop eller lukk-knapper
+      this.modal.addEventListener('click', (e) => {
+        if (e.target === this.modal || e.target.classList.contains('booking-modal-close')) {
+          this.hide();
+        }
+      });
+      
+      // Lukk med ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isVisible) {
+          this.hide();
+        }
+      });
+      
+      // Fortsett til Fresha
+      const continueBtn = document.getElementById('booking-continue-btn');
+      if (continueBtn) {
+        continueBtn.addEventListener('click', () => {
+          this.redirect();
+        });
+      }
+      
+      // Sett opp booking knapper
+      this.setupBookingButtons();
+    }
+    
+    setupBookingButtons() {
+      const buttons = document.querySelectorAll('[data-booking-url], [data-service-id]');
+      buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const serviceId = button.getAttribute('data-service-id') || 'general';
+          
+          // Use service mapping for URL if available
+          let url = button.getAttribute('data-booking-url');
+          if (this.getServiceUrl && serviceId) {
+            url = this.getServiceUrl(serviceId);
+          }
+          
+          // Fallback to default URL if nothing found
+          if (!url) {
+            url = 'https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801';
+          }
+          
+          this.show(url, serviceId);
+          
+          // Analytics tracking
+          this.trackEvent('Booking', 'Click', serviceId);
+        });
+      });
+    }
+    
+    show(url, serviceId = '') {
+      this.redirectUrl = url;
+      this.serviceId = serviceId;
+      this.isVisible = true;
+      
+      if (this.modal) {
+        this.modal.classList.remove('opacity-0', 'invisible');
+        this.modal.classList.add('opacity-100', 'visible');
+        
+        const content = this.modal.querySelector('.bg-ivory');
+        if (content) {
+          content.classList.remove('scale-95');
+          content.classList.add('scale-100');
+        }
+        
+        // Auto-redirect etter 2 sekunder
+        setTimeout(() => {
+          if (this.isVisible) {
+            this.redirect();
+          }
+        }, 2000);
+      }
+      
+      // Forhindre scrolling
+      document.body.style.overflow = 'hidden';
+    }
+    
+    hide() {
+      this.isVisible = false;
+      
+      if (this.modal) {
+        this.modal.classList.remove('opacity-100', 'visible');
+        this.modal.classList.add('opacity-0', 'invisible');
+        
+        const content = this.modal.querySelector('.bg-ivory');
+        if (content) {
+          content.classList.remove('scale-100');
+          content.classList.add('scale-95');
+        }
+      }
+      
+      // Tillat scrolling igjen
+      document.body.style.overflow = '';
+    }
+    
+    redirect() {
+      if (this.redirectUrl) {
+        // Track fortsett-hendelse
+        this.trackEvent('Booking', 'Continue', this.serviceId);
+        
+        // Redirect til Fresha
+        window.location.href = this.redirectUrl;
+      }
+    }
+    
+    async loadServiceMapping() {
+      try {
+        const module = await import('../scripts/serviceMapping.js');
+        this.serviceMapping = module.serviceMapping;
+        this.trackBookingEvent = module.trackBookingEvent;
+        this.getServiceUrl = module.getServiceUrl;
+        this.getServiceDetails = module.getServiceDetails;
+      } catch (error) {
+        console.warn('Could not load service mapping:', error);
+      }
+    }
+    
+    trackEvent(category, action, label) {
+      // Enhanced analytics with service mapping
+      if (this.trackBookingEvent && label) {
+        this.trackBookingEvent(label);
+      } else if (typeof window.gtag === 'function') {
+        window.gtag('event', action, {
+          'event_category': category,
+          'event_label': label,
+          'service_id': this.serviceId,
+          'timestamp': new Date().toISOString()
+        });
+        console.log(`📊 Tracking: ${category} - ${action} - ${label}`);
+      }
+    }
+  }
+  
+  // Initialiser når DOM er klar
+  document.addEventListener('DOMContentLoaded', () => {
+    new BookingModal();
+  });
+</script>
+
+<style>
+  .booking-modal.visible .bg-ivory {
+    transform: scale(1);
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style> 
