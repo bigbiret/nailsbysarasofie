@@ -70,8 +70,46 @@ import '../styles/globals.css';
       </div>
     </section>
 
+    <!-- Gallery Preview Section -->
+    <section class="py-16 bg-ivory" id="inspirasjon">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-serif text-center mb-4">Se inspirasjon her</h2>
+        <p class="text-center intro-text mb-12 max-w-2xl mx-auto">
+          Få idéer til din neste negldesign – bla gjennom noen av mine favorittkreasjoner.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-square">
+            <img 
+              src={`${import.meta.env.BASE_URL}galleri/gellakk/gellakk_1.jpg`} 
+              alt="Gellakk inspirasjon - elegant finish"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-square">
+            <img 
+              src={`${import.meta.env.BASE_URL}galleri/gelenegler/gelenegler_2.jpg`} 
+              alt="Gelenegler inspirasjon - kreativt design"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-square">
+            <img 
+              src={`${import.meta.env.BASE_URL}galleri/gelenegler/IMG_2295.jpg`} 
+              alt="Negldesign inspirasjon - perfekt finish"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL}galleri`}>Se hele galleriet</Button>
+        </div>
+      </div>
+    </section>
+
     <!-- About Sara Sofie -->
-    <section class="py-16 bg-ivory">
+    <section class="py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-serif text-center mb-12">Om Sara Sofie</h2>
         <div class="max-w-2xl mx-auto">
@@ -84,7 +122,7 @@ import '../styles/globals.css';
                 style="object-position: 30% center;"
               />
             </div>
-            <div class="text-lg card-description space-y-4">
+            <div class="text-lg card-description space-y-4 mb-6">
               <p>
                 💕 Jeg er fra Son og har alltid elsket å lage fine negler! ✨ 
                 Jeg har tatt kurs innen neglpleie, og holder meg oppdatert 
@@ -93,6 +131,9 @@ import '../styles/globals.css';
               <p>
                 Jeg elsker å prøve nye design og få andre til å føle seg fine!🌸
               </p>
+            </div>
+            <div class="text-center">
+              <Button variant="secondary" href={`${import.meta.env.BASE_URL}kontakt`}>Ta kontakt</Button>
             </div>
           </div>
         </div>
