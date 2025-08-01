@@ -24,8 +24,8 @@ import '../styles/globals.css';
           Din nye negletekniker i Son! Jeg har nylig tatt neglkurs og tilbyr gelenegler, gellakk og negldesign. Book din time online!
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="hero-cta">Book time nå</Button>
-          <Button variant="secondary" href={`${import.meta.env.BASE_URL}tjenester`}>Se tjenester</Button>
+          <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="hero-cta" aria-label="Book time nå">Book time nå</Button>
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL}tjenester`} aria-label="Se alle tjenester">Se tjenester</Button>
         </div>
       </div>
     </section>
@@ -49,7 +49,7 @@ import '../styles/globals.css';
             </div>
             <h3 class="font-serif text-xl mb-2">Gellakk, nytt sett</h3>
             <p class="card-description mb-4">200 kr</p>
-            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gellakk-nytt">Book</Button>
+            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gellakk-nytt" aria-label="Book gellakk nytt sett">Book</Button>
           </div>
           <div class="card text-center">
             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
@@ -61,11 +61,11 @@ import '../styles/globals.css';
             </div>
             <h3 class="font-serif text-xl mb-2">Gelenegler, nytt sett</h3>
             <p class="card-description mb-4">400 kr</p>
-            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gelenegler-nytt">Book</Button>
+            <Button size="sm" data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="gelenegler-nytt" aria-label="Book gelenegler nytt sett">Book</Button>
           </div>
         </div>
         <div class="text-center mt-8">
-          <Button variant="secondary" href={`${import.meta.env.BASE_URL}tjenester`}>Se alle tjenester</Button>
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL}tjenester`} aria-label="Se alle tjenester">Se alle tjenester</Button>
         </div>
       </div>
     </section>
@@ -103,7 +103,7 @@ import '../styles/globals.css';
         </div>
         
         <div class="text-center">
-          <Button variant="secondary" href={`${import.meta.env.BASE_URL}galleri`}>Se hele galleriet</Button>
+          <Button variant="secondary" href={`${import.meta.env.BASE_URL}galleri`} aria-label="Se hele galleriet">Se hele galleriet</Button>
         </div>
       </div>
     </section>
@@ -131,7 +131,7 @@ import '../styles/globals.css';
               </p>
             </div>
             <div class="text-center">
-              <Button variant="secondary" href={`${import.meta.env.BASE_URL}kontakt`}>Ta kontakt</Button>
+              <Button variant="secondary" href={`${import.meta.env.BASE_URL}kontakt`} aria-label="Ta kontakt">Ta kontakt</Button>
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ import '../styles/globals.css';
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-serif text-coal mb-4">Klar for vakre negler?</h2>
         <p class="text-coal mb-8">Book din time hos meg og opplev god neglpleie til rimelige priser. Jeg gleder meg til å se deg!</p>
-        <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="general" class="bg-ivory text-coal shadow-soft hover:shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105">Book time</Button>
+        <Button data-booking-url="https://www.fresha.com/nb/book-now/nails-by-sara-sofie-aoar71eq/services?lid=2696667&eid=4757759&share=true&pId=2609801" data-service-id="general" class="bg-ivory text-coal shadow-soft hover:shadow-lg hover:bg-white transition-all duration-300 transform hover:scale-105" aria-label="Book time">Book time</Button>
       </div>
     </section>
   </main>

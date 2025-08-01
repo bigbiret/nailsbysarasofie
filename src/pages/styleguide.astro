@@ -38,11 +38,11 @@ const colors = [
       <h2 class="text-2xl font-serif mb-6">Typografi</h2>
       <div class="space-y-6">
         <div>
-          <h1 class="text-4xl font-serif">H1 - Playfair Display</h1>
+          <h3 class="text-4xl font-serif">H1 - Playfair Display</h3>
           <p class="text-sm text-taupe">Font: Playfair Display, Size: 4xl (clamp(2.2rem, 4vw, 3rem))</p>
         </div>
         <div>
-          <h2 class="text-3xl font-serif">H2 - Playfair Display</h2>
+          <h3 class="text-3xl font-serif">H2 - Playfair Display</h3>
           <p class="text-sm text-taupe">Font: Playfair Display, Size: 3xl (clamp(1.6rem, 3vw, 2.2rem))</p>
         </div>
         <div>
@@ -65,9 +65,9 @@ const colors = [
       <h2 class="text-2xl font-serif mb-6">Knapper</h2>
       <div class="space-y-4">
         <div class="flex flex-wrap gap-4">
-          <Button>Primary Button</Button>
-          <Button variant="outline">Outline Button</Button>
-          <Button variant="ghost">Ghost Button</Button>
+                  <Button aria-label="Primary Button">Primary Button</Button>
+        <Button variant="outline" aria-label="Outline Button">Outline Button</Button>
+        <Button variant="ghost" aria-label="Ghost Button">Ghost Button</Button>
         </div>
         <div class="flex flex-wrap gap-4">
           <Button size="sm">Small Button</Button>

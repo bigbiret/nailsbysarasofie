@@ -129,9 +129,9 @@ export function trackBookingEvent(serviceId) {
         custom_parameter_1: service.name,
         custom_parameter_2: service.category
       });
-      console.log('Analytics event tracked:', service.analytics);
-    } catch (error) {
-      console.warn('Analytics tracking failed:', error);
+              // Analytics event tracked
+      } catch (error) {
+        // Analytics tracking failed
     }
   }
 }

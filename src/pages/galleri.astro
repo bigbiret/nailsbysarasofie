@@ -123,46 +123,52 @@ const geleneglerImages = [
 <script>
   // Image gallery functionality
   document.addEventListener('DOMContentLoaded', function() {
-    const imageModal = document.getElementById('image-modal');
-    const modalImage = document.getElementById('modal-image');
-    const closeButton = document.getElementById('close-image-modal');
-    const galleryImages = document.querySelectorAll('[data-modal-image]');
+    try {
+      const imageModal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const closeButton = document.getElementById('close-image-modal');
+      const galleryImages = document.querySelectorAll('[data-modal-image]');
 
-    // Open image in modal
-    galleryImages.forEach(img => {
-      img.addEventListener('click', function() {
-        const src = this.getAttribute('data-modal-image');
-        const alt = this.getAttribute('data-modal-alt');
-        
-        modalImage.src = src;
-        modalImage.alt = alt;
-        imageModal.classList.remove('hidden');
-        imageModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
+      if (!imageModal || !modalImage || !closeButton) return;
+
+      // Open image in modal
+      galleryImages.forEach(img => {
+        img.addEventListener('click', function() {
+          const src = this.getAttribute('data-modal-image');
+          const alt = this.getAttribute('data-modal-alt');
+          
+          modalImage.src = src;
+          modalImage.alt = alt;
+          imageModal.classList.remove('hidden');
+          imageModal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        });
       });
-    });
 
-    // Close modal
-    function closeModal() {
-      imageModal.classList.add('hidden');
-      imageModal.classList.remove('flex');
-      document.body.style.overflow = 'auto';
+      // Close modal
+      function closeModal() {
+        imageModal.classList.add('hidden');
+        imageModal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+      }
+
+      closeButton.addEventListener('click', closeModal);
+      
+      // Close on backdrop click
+      imageModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+
+      // Close on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    } catch (error) {
+      // Gallery functionality not available
     }
-
-    closeButton.addEventListener('click', closeModal);
-    
-    // Close on backdrop click
-    imageModal.addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) {
-        closeModal();
-      }
-    });
   });
 </script> 

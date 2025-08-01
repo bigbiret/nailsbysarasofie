@@ -1,121 +1,104 @@
 # Nails by Sara Sofie
 
-En moderne, responsiv nettside for neglsalong bygget med Astro og Tailwind CSS.
+En moderne nettside for negletekniker Sara Sofie i Son. Bygget med Astro og Tailwind CSS.
 
-## 🚀 Kom i gang
+## 🚀 Utvikling
 
-### Forutsetninger
-- Node.js (versjon 18 eller nyere)
-- npm
-
-### Installasjon
-
-1. Klon repoet og naviger til mappen:
 ```bash
-cd nailsbysarasofie
-```
-
-2. Installer avhengigheter:
-```bash
+# Installer dependencies
 npm install
-```
 
-3. Start utviklingsserveren:
-```bash
+# Start utviklingsserver
 npm run dev
+
+# Bygg for produksjon
+npm run build
+
+# Forhåndsvis bygget nettside
+npm run preview
 ```
 
-Nettsiden vil være tilgjengelig på `http://localhost:4321`
+## 🧪 Testing
+
+```bash
+# Kjør accessibility tests lokalt
+npm run test:accessibility
+
+# Kjør Lighthouse CI lokalt
+npm run test:lighthouse
+```
+
+## 📊 CI/CD Pipeline
+
+Prosjektet har en automatisk CI/CD pipeline som inkluderer:
+
+- **Build**: Bygger Astro nettsiden
+- **Accessibility Audit**: Tester alle sider med axe-core (WCAG 2.1 AA)
+- **Lighthouse CI**: Tester performance, accessibility, best practices og SEO
+- **Deploy**: Deployer til GitHub Pages kun hvis alle tester passerer
+
+### Lighthouse Scores (Minimum)
+- Performance: ≥90
+- Accessibility: ≥95
+- Best Practices: ≥90
+- SEO: ≥90
+
+## Lighthouse Testing
+
+This project includes Lighthouse CI for automated performance, accessibility, best practices, and SEO testing.
+
+### Running Lighthouse Tests Locally
+
+1. First, build the project:
+   ```bash
+   npm run build
+   ```
+
+2. Run the Lighthouse tests:
+   ```bash
+   npm run lighthouse
+   ```
+
+This will:
+- Start the preview server automatically
+- Test all pages (home, tjenester, galleri, booking, kontakt, personvern)
+- Run 3 tests per page for accuracy
+- Check for minimum scores of 0.9 in all categories
+- Generate a report with results
+
+### Tested Pages
+- Homepage (`/`)
+- Services (`/tjenester`)
+- Gallery (`/galleri`)
+- Booking (`/booking`)
+- Contact (`/kontakt`)
+- Privacy Policy (`/personvern`)
+
+### Configuration
+The Lighthouse configuration is in `lighthouserc.js` and can be customized as needed.
+
+## 🏗️ Teknologier
+
+- **Astro** - Moderne web framework
+- **Tailwind CSS** - Utility-first CSS framework
+- **Playwright** - Browser automation for testing
+- **axe-core** - Accessibility testing
+- **Lighthouse CI** - Performance og kvalitet testing
 
 ## 📁 Prosjektstruktur
 
 ```
-/
-├── public/                 # Statiske filer (bilder, favicon, etc.)
-├── src/
-│   ├── components/        # Astro komponenter
-│   │   ├── Button.astro
-│   │   ├── Card.astro
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   └── Modal.astro
-│   ├── layouts/           # Layout-filer
-│   │   └── Base.astro
-│   ├── pages/             # Sider (filbasert routing)
-│   │   ├── index.astro    # Forside
-│   │   ├── booking.astro  # Booking-side
-│   │   ├── tjenester.astro
-│   │   ├── galleri.astro
-│   │   ├── kontakt.astro
-│   │   ├── styleguide.astro
-│   │   └── personvern.astro
-│   ├── scripts/           # JavaScript filer
-│   │   └── (ingen filer)  # Event tracking er inline i Base.astro
-│   └── styles/            # CSS filer
-│       ├── globals.css    # Global styling
-│       └── tokens.css     # Design tokens
-├── docs/                  # Dokumentasjon
-│   ├── PRD.md            # Produktkrav
-│   ├── Styleguide.md     # Design system
-│   └── oppsett.md        # Teknisk oppsett
-└── galleri/              # Bilder for galleri
+src/
+├── components/     # Gjenbrukbare komponenter
+├── layouts/        # Side layouts
+├── pages/          # Astro sider
+├── scripts/        # JavaScript utilities
+└── styles/         # CSS og styling
 ```
-
-## 🛠️ Kommandoer
-
-| Kommando                | Handling                                      |
-| :---------------------- | :-------------------------------------------- |
-| `npm install`           | Installer avhengigheter                       |
-| `npm run dev`           | Start lokal utviklingsserver på `localhost:4321` |
-| `npm run build`         | Bygg produksjonsklar versjon til `./dist/`    |
-| `npm run preview`       | Forhåndsvis bygget versjon lokalt             |
-
-## 🎨 Design System
-
-Nettsiden bruker et konsistent design system basert på:
-
-- **Farger**: Pink (#F3C7D7), Ivory (#F8F4F1), Coal (#111111), Nude (#F2C2AE), Gold (#C8A96A), Taupe (#B9B0A8)
-- **Typografi**: Playfair Display (headings) + Inter (body text)
-- **Komponenter**: Buttons, Cards, Modal med konsistent styling
-
-Se `/styleguide` for komplett oversikt.
-
-## 📱 Features
-
-- ✅ Responsiv design (mobile-first)
-- ✅ Booking-modal med Fresha-integrasjon
-- ✅ SEO-optimalisert
-- ✅ Accessibility (WCAG 2.1 AA)
-- ✅ Rask loading (Lighthouse >90)
-- ✅ GitHub Pages deployment
-
-## 🚀 Deployment
-
-Nettsiden deployes automatisk til GitHub Pages når du pusher til `main` branch.
-
-### Manuell deployment
-```bash
-npm run build
-```
-
-## 📋 TODO
-
-- [ ] Legg til ekte innhold (priser, bilder, kontaktinfo)
-- [ ] Integrer ekte Fresha booking-widget
-- [ ] Legg til Google Analytics
-- [ ] Optimaliser bilder
-- [ ] Test og QA
 
 ## 🔧 Konfigurasjon
 
-- **Astro config**: `astro.config.mjs`
-- **Tailwind config**: `tailwind.config.cjs`
-- **TypeScript config**: `tsconfig.json`
-
-## 📞 Kontakt
-
-For spørsmål om utviklingen, kontakt [utvikler].
-
----
-
-Built with ❤️ using [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) 
+- `astro.config.mjs` - Astro konfigurasjon
+- `.lighthouserc.js` - Lighthouse CI konfigurasjon
+- `tests/accessibility.js` - Accessibility test script
+- `.github/workflows/ci.yml` - GitHub Actions CI/CD pipeline

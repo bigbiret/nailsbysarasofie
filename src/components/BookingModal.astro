@@ -37,6 +37,7 @@ const { id = 'booking-modal' } = Astro.props;
       <button 
         class="booking-modal-close px-6 py-2 text-sm text-taupe border border-taupe/30 rounded-lg hover:bg-taupe/10 transition-colors"
         type="button"
+        aria-label="Avbryt booking"
       >
         Avbryt
       </button>
@@ -170,7 +171,7 @@ const { id = 'booking-modal' } = Astro.props;
         this.getServiceUrl = module.getServiceUrl;
         this.getServiceDetails = module.getServiceDetails;
       } catch (error) {
-        console.warn('Could not load service mapping:', error);
+        // Could not load service mapping
       }
     }
     
@@ -179,13 +180,17 @@ const { id = 'booking-modal' } = Astro.props;
       if (this.trackBookingEvent && label) {
         this.trackBookingEvent(label);
       } else if (typeof window.gtag === 'function') {
-        window.gtag('event', action, {
-          'event_category': category,
-          'event_label': label,
-          'service_id': this.serviceId,
-          'timestamp': new Date().toISOString()
-        });
-        console.log(`📊 Tracking: ${category} - ${action} - ${label}`);
+        try {
+          window.gtag('event', action, {
+            'event_category': category,
+            'event_label': label,
+            'service_id': this.serviceId,
+            'timestamp': new Date().toISOString()
+          });
+          // Tracking analytics event
+        } catch (error) {
+          // Analytics not available
+        }
       }
     }
   }

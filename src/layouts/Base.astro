@@ -167,6 +167,20 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https:;
+      connect-src 'self' https://www.google-analytics.com;
+      frame-src 'self' https://www.fresha.com https://www.google.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+    " />
+    
     <!-- Mobile optimization -->
     <meta name="theme-color" content="#F3C7D7" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -239,139 +253,284 @@ const structuredData = {
     <!-- Google Analytics 4 - For verifikasjon og GDPR-compliant tracking -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQKDPTFG2K"></script>
     <script>
-      // Global site tag setup
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      
-      // GDPR-compliant: Start med consent DENIED
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-      
-      gtag('js', new Date());
-      gtag('config', 'G-TQKDPTFG2K', {
-        'anonymize_ip': true,
-        'allow_google_signals': false,
-        'allow_ad_personalization_signals': false
-      });
-      
-      console.log('📊 Google Analytics loaded (tracking disabled until consent)');
+      try {
+        // Global site tag setup
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        
+        // GDPR-compliant: Start med consent DENIED
+        gtag('consent', 'default', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+        
+        gtag('js', new Date());
+        gtag('config', 'G-TQKDPTFG2K', {
+          'anonymize_ip': true,
+          'allow_google_signals': false,
+          'allow_ad_personalization_signals': false
+        });
+        
+        // Google Analytics loaded (tracking disabled until consent)
+      } catch (error) {
+        // Google Analytics not available
+      }
       
       // Enkel og pålitelig cookie-samtykke løsning
       
       // Aktiver Google Analytics tracking
       window.loadGoogleAnalytics = function() {
-        if (typeof window.gtag === 'function') {
-          gtag('consent', 'update', {
-            'analytics_storage': 'granted'
-          });
-          console.log('✅ Google Analytics tracking enabled');
+        try {
+          if (typeof window.gtag === 'function') {
+            gtag('consent', 'update', {
+              'analytics_storage': 'granted'
+            });
+            // Google Analytics tracking enabled
+          }
+        } catch (error) {
+          // Google Analytics not available
         }
       };
 
       window.disableGoogleAnalytics = function() {
-        if (typeof window.gtag === 'function') {
-          gtag('consent', 'update', {
-            'analytics_storage': 'denied',
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied'
+        try {
+          if (typeof window.gtag === 'function') {
+            gtag('consent', 'update', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied'
+            });
+          }
+          
+          // Slett eksisterende Google Analytics cookies
+          const cookies = ['_ga', '_gid', '_gat_gtag_G_TQKDPTFG2K'];
+          cookies.forEach(name => {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
           });
+          
+          // Google Analytics tracking disabled
+        } catch (error) {
+          // Google Analytics not available
         }
-        
-        // Slett eksisterende Google Analytics cookies
-        const cookies = ['_ga', '_gid', '_gat_gtag_G_TQKDPTFG2K'];
-        cookies.forEach(name => {
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        });
-        
-        console.log('❌ Google Analytics tracking disabled');
       };
 
       // Cookie banner funksjonalitet
       function showCookieBanner() {
-        const banner = document.getElementById('cookie-banner');
-        if (banner) {
-          banner.style.display = 'block';
-          banner.style.animation = 'slideUp 0.5s ease-out';
+        try {
+          const banner = document.getElementById('cookie-banner');
+          if (banner) {
+            banner.style.display = 'block';
+            banner.style.animation = 'slideUp 0.5s ease-out';
+          }
+        } catch (error) {
+          // Cookie banner not available
         }
       }
 
       function hideCookieBanner() {
-        const banner = document.getElementById('cookie-banner');
-        if (banner) {
-          banner.style.animation = 'slideDown 0.5s ease-out';
-          setTimeout(() => {
-            banner.style.display = 'none';
-          }, 500);
+        try {
+          const banner = document.getElementById('cookie-banner');
+          if (banner) {
+            banner.style.animation = 'slideDown 0.5s ease-out';
+            setTimeout(() => {
+              banner.style.display = 'none';
+            }, 500);
+          }
+        } catch (error) {
+          // Cookie banner not available
         }
       }
 
       window.acceptCookies = function() {
-        localStorage.setItem('cookie-consent', 'accepted');
-        localStorage.setItem('cookie-consent-date', new Date().toISOString());
-        hideCookieBanner();
-        window.loadGoogleAnalytics();
-        console.log('✅ Cookies accepted');
+        try {
+          localStorage.setItem('cookie-consent', 'accepted');
+          localStorage.setItem('cookie-consent-date', new Date().toISOString());
+          hideCookieBanner();
+          window.loadGoogleAnalytics();
+          // Cookies accepted
+        } catch (error) {
+          // Cookie functionality not available
+        }
       };
 
       window.declineCookies = function() {
-        localStorage.setItem('cookie-consent', 'declined');
-        localStorage.setItem('cookie-consent-date', new Date().toISOString());
-        hideCookieBanner();
-        window.disableGoogleAnalytics();
-        console.log('❌ Cookies declined');
+        try {
+          localStorage.setItem('cookie-consent', 'declined');
+          localStorage.setItem('cookie-consent-date', new Date().toISOString());
+          hideCookieBanner();
+          window.disableGoogleAnalytics();
+          // Cookies declined
+        } catch (error) {
+          // Cookie functionality not available
+        }
       };
 
       window.showCookieSettings = function() {
-        // Fjern eksisterende samtykke og vis banner igjen
-        localStorage.removeItem('cookie-consent');
-        showCookieBanner();
+        try {
+          // Fjern eksisterende samtykke og vis banner igjen
+          localStorage.removeItem('cookie-consent');
+          showCookieBanner();
+        } catch (error) {
+          // Cookie settings not available
+        }
       };
 
       // Cookie details modal functions
       window.showCookieDetails = function() {
-        const modal = document.getElementById('cookie-details-modal');
-        if (modal) {
-          modal.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
+        try {
+          const modal = document.getElementById('cookie-details-modal');
+          if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+          }
+        } catch (error) {
+          // Cookie modal not available
         }
       };
 
       window.hideCookieDetails = function() {
-        const modal = document.getElementById('cookie-details-modal');
-        if (modal) {
-          modal.style.display = 'none';
-          document.body.style.overflow = '';
+        try {
+          const modal = document.getElementById('cookie-details-modal');
+          if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        } catch (error) {
+          // Cookie modal not available
         }
       };
 
       window.acceptCookiesAndClose = function() {
-        window.acceptCookies();
-        window.hideCookieDetails();
+        try {
+          window.acceptCookies();
+          window.hideCookieDetails();
+        } catch (error) {
+          // Cookie functionality not available
+        }
       };
 
       window.declineCookiesAndClose = function() {
-        window.declineCookies();
-        window.hideCookieDetails();
+        try {
+          window.declineCookies();
+          window.hideCookieDetails();
+        } catch (error) {
+          // Cookie functionality not available
+        }
       };
 
       // Initialiser når DOM er klar
       document.addEventListener('DOMContentLoaded', function() {
-        const consent = localStorage.getItem('cookie-consent');
-        
-        if (consent === 'accepted') {
-          window.loadGoogleAnalytics();
-        } else if (consent === 'declined') {
-          window.disableGoogleAnalytics();
-        } else {
-          // Vis banner etter 2 sekunder
-          setTimeout(showCookieBanner, 2000);
+        try {
+          const consent = localStorage.getItem('cookie-consent');
+          
+          if (consent === 'accepted') {
+            window.loadGoogleAnalytics();
+          } else if (consent === 'declined') {
+            window.disableGoogleAnalytics();
+          } else {
+            // Vis banner etter 2 sekunder
+            setTimeout(showCookieBanner, 2000);
+          }
+
+          // Cookie button event listeners
+          const cookieDetailsBtn = document.querySelector('.cookie-details-btn');
+          const cookieAcceptBtn = document.querySelector('.cookie-accept');
+          const cookieDeclineBtn = document.querySelector('.cookie-decline');
+          const cookieModalBackdrop = document.querySelector('.cookie-modal-backdrop');
+          const cookieModalClose = document.querySelector('.cookie-modal-close');
+          const cookieAcceptPrimary = document.querySelector('.cookie-accept-primary');
+          const cookieDeclineSecondary = document.querySelector('.cookie-decline-secondary');
+
+          if (cookieDetailsBtn) {
+            cookieDetailsBtn.addEventListener('click', function() {
+              try {
+                window.showCookieDetails();
+              } catch (error) {
+                // Cookie details not available
+              }
+            });
+          }
+
+          if (cookieAcceptBtn) {
+            cookieAcceptBtn.addEventListener('click', function() {
+              try {
+                window.acceptCookies();
+              } catch (error) {
+                // Cookie accept not available
+              }
+            });
+          }
+
+          if (cookieDeclineBtn) {
+            cookieDeclineBtn.addEventListener('click', function() {
+              try {
+                window.declineCookies();
+              } catch (error) {
+                // Cookie decline not available
+              }
+            });
+          }
+
+          if (cookieModalBackdrop) {
+            cookieModalBackdrop.addEventListener('click', function() {
+              try {
+                window.hideCookieDetails();
+              } catch (error) {
+                // Cookie modal not available
+              }
+            });
+          }
+
+          if (cookieModalClose) {
+            cookieModalClose.addEventListener('click', function() {
+              try {
+                window.hideCookieDetails();
+              } catch (error) {
+                // Cookie modal not available
+              }
+            });
+          }
+
+          if (cookieAcceptPrimary) {
+            cookieAcceptPrimary.addEventListener('click', function() {
+              try {
+                window.acceptCookiesAndClose();
+              } catch (error) {
+                // Cookie accept not available
+              }
+            });
+          }
+
+          if (cookieDeclineSecondary) {
+            cookieDeclineSecondary.addEventListener('click', function() {
+              try {
+                window.declineCookiesAndClose();
+              } catch (error) {
+                // Cookie decline not available
+              }
+            });
+          }
+
+          // Footer cookie settings button
+          const footerCookieSettingsBtn = document.querySelector('button[aria-label="Åpne cookie-innstillinger"]');
+          if (footerCookieSettingsBtn) {
+            footerCookieSettingsBtn.addEventListener('click', function() {
+              try {
+                if (typeof window.showCookieSettings === 'function') {
+                  window.showCookieSettings();
+                }
+              } catch (error) {
+                // Cookie settings not available
+              }
+            });
+          }
+        } catch (error) {
+          // Cookie functionality not available
         }
       });
     </script>
@@ -391,24 +550,24 @@ const structuredData = {
         <div class="cookie-text">
           <span class="cookie-icon">🍪</span>
           <span class="cookie-message">Vi bruker cookies for å forbedre din opplevelse.</span>
-          <button onclick="showCookieDetails()" class="cookie-details-btn" aria-label="Les mer om cookies">
+          <button class="cookie-details-btn" aria-label="Les mer om cookies">
             Innstillinger
           </button>
         </div>
         <div class="cookie-actions">
-          <button onclick="acceptCookies()" class="cookie-accept">Godta</button>
-          <button onclick="declineCookies()" class="cookie-decline">Avvis</button>
+                  <button class="cookie-accept" aria-label="Godta cookies">Godta</button>
+        <button class="cookie-decline" aria-label="Avvis cookies">Avvis</button>
         </div>
       </div>
     </div>
 
     <!-- Cookie Details Modal -->
     <div id="cookie-details-modal" class="cookie-modal" style="display: none;">
-      <div class="cookie-modal-backdrop" onclick="hideCookieDetails()"></div>
+      <div class="cookie-modal-backdrop"></div>
       <div class="cookie-modal-content">
         <div class="cookie-modal-header">
-          <h3>🍪 Informasjonskapsler og personvern</h3>
-          <button onclick="hideCookieDetails()" class="cookie-modal-close" aria-label="Lukk">&times;</button>
+          <h2>🍪 Informasjonskapsler og personvern</h2>
+          <button class="cookie-modal-close" aria-label="Lukk">&times;</button>
         </div>
         <div class="cookie-modal-body">
           <p>
@@ -420,8 +579,8 @@ const structuredData = {
           </p>
         </div>
         <div class="cookie-modal-actions">
-          <button onclick="acceptCookiesAndClose()" class="cookie-accept-primary">Godta alle</button>
-          <button onclick="declineCookiesAndClose()" class="cookie-decline-secondary">Avvis alle</button>
+                  <button class="cookie-accept-primary" aria-label="Godta alle cookies">Godta alle</button>
+        <button class="cookie-decline-secondary" aria-label="Avvis alle cookies">Avvis alle</button>
         </div>
       </div>
     </div>
@@ -562,7 +721,7 @@ const structuredData = {
          border-bottom: 1px solid #f0f0f0;
        }
 
-       .cookie-modal-header h3 {
+       .cookie-modal-header h2 {
          margin: 0;
          font-size: 1.2rem;
          font-family: 'Playfair Display', serif;
@@ -678,26 +837,34 @@ const structuredData = {
      <!-- Google Analytics Event Tracking -->
      <script>
        document.addEventListener('DOMContentLoaded', function() {
-         console.log('✅ Analytics event tracking loaded');
-         
-         // Track all booking links (Fresha)
-         const bookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
-         
-         bookingLinks.forEach(link => {
-           link.addEventListener('click', function() {
-             // Google Analytics event tracking (kun hvis aktivert via samtykke)
-             if (typeof window.gtag !== 'undefined' && window.gtag) {
-               window.gtag('event', 'booking_click', {
-                 'event_category': 'booking',
-                 'event_label': 'fresha_link',
-                 'transport_type': 'beacon'
-               });
-               console.log('📊 Analytics: Booking link clicked (Fresha)');
-             }
+         try {
+           // Analytics event tracking loaded
+           
+           // Track all booking links (Fresha)
+           const bookingLinks = document.querySelectorAll('a[href*="fresha.com"]');
+           
+           bookingLinks.forEach(link => {
+             link.addEventListener('click', function() {
+               // Google Analytics event tracking (kun hvis aktivert via samtykke)
+               try {
+                 if (typeof window.gtag !== 'undefined' && window.gtag) {
+                   window.gtag('event', 'booking_click', {
+                     'event_category': 'booking',
+                     'event_label': 'fresha_link',
+                     'transport_type': 'beacon'
+                   });
+                   // Analytics: Booking link clicked (Fresha)
+                 }
+               } catch (error) {
+                 // Analytics not available
+               }
+             });
            });
-         });
-         
-         console.log(`📊 Tracking ${bookingLinks.length} booking links`);
+           
+           // Tracking booking links
+         } catch (error) {
+           // Analytics tracking not available
+         }
        });
      </script>
    </body>
