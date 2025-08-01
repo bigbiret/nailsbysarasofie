@@ -111,19 +111,22 @@ function isActive(path: string) {
 </header>
 
 <script>
-  // Mobile menu toggle
+  // Mobile menu toggle - only load on mobile devices
   document.addEventListener('DOMContentLoaded', function() {
-    try {
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
+    // Only load mobile menu JavaScript if viewport is mobile
+    if (window.innerWidth < 768) {
+      try {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      } catch (error) {
+        // Mobile menu not available
       }
-    } catch (error) {
-      // Mobile menu not available
     }
   });
 </script> 

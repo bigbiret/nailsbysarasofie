@@ -10,6 +10,10 @@ export default defineConfig({
     assets: '_astro',
     inlineStylesheets: 'auto'
   },
+  server: {
+    // Enable compression for preview server
+    compress: true
+  },
   vite: {
     build: {
       rollupOptions: {
@@ -25,6 +29,10 @@ export default defineConfig({
           drop_debugger: true
         }
       }
+    },
+    server: {
+      // Enable compression for dev server
+      compress: true
     }
   }
 }); 
