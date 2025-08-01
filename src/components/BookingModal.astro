@@ -56,7 +56,6 @@ const { id = 'booking-modal' } = Astro.props;
       this.serviceMapping = null;
       
       this.init();
-      this.loadServiceMapping();
     }
     
     init() {
@@ -85,9 +84,13 @@ const { id = 'booking-modal' } = Astro.props;
     setupBookingButtons() {
       const buttons = document.querySelectorAll('[data-booking-url], [data-service-id]');
       buttons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', async (e) => {
           e.preventDefault();
           const serviceId = button.getAttribute('data-service-id') || 'general';
+
+          if (!this.serviceMapping) {
+            await this.loadServiceMapping();
+          }
           
           // Use service mapping for URL if available
           let url = button.getAttribute('data-booking-url');
@@ -164,6 +167,7 @@ const { id = 'booking-modal' } = Astro.props;
     }
     
     async loadServiceMapping() {
+      if (this.serviceMapping) return;
       try {
         const module = await import('../scripts/serviceMapping.js');
         this.serviceMapping = module.serviceMapping;
