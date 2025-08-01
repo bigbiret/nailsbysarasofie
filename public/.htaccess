@@ -1,0 +1,95 @@
+# Enable Gzip Compression
+<IfModule mod_deflate.c>
+    # Active compression
+    SetOutputFilter DEFLATE
+    # Force deflate for mangled headers
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodingRg)$ ^(.*)gzip(.*)$ HAVE_Accept-Encoding
+            Header append Vary Accept-Encoding env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+    # Compress all output labeled with one of the following MIME-types
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE application/atom+xml \
+                                      application/javascript \
+                                      application/json \
+                                      application/ld+json \
+                                      application/manifest+json \
+                                      application/rdf+xml \
+                                      application/rss+xml \
+                                      application/rss+xml \
+                                      application/xhtml+xml \
+                                      application/xml \
+                                      font/eot \
+                                      font/otf \
+                                      font/ttf \
+                                      image/svg+xml \
+                                      text/css \
+                                      text/html \
+                                      text/javascript \
+                                      text/plain \
+                                      text/xml
+    </IfModule>
+    # Remove browser bugs
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    # Don't compress images
+    SetEnvIfNoCase Request_URI \
+    \.(?:gif|jpe?g|png|rar|zip|exe|flv|mov|wma|mp3|avi|swf|mp?g|mp4|webm|webp)$ no-gzip dont-vary
+</IfModule>
+
+# Cache Control - Forbedret versjon med beste praksiser
+<IfModule mod_expires.c>
+    ExpiresActive on
+    
+    # HTML - Kort cache (innhold endres ofte)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # CSS og JS - Lang cache (innhold endres sjelden)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Bilder - Lang cache (endres sjelden)
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/ico "access plus 1 year"
+    
+    # Fonts - Lang cache
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    
+    # Data filer
+    ExpiresByType application/json "access plus 1 month"
+    ExpiresByType application/xml "access plus 1 month"
+    ExpiresByType text/xml "access plus 1 month"
+</IfModule>
+
+# Cache-Control Headers - Spesifikke regler for ulike filtyper
+<IfModule mod_headers.c>
+    # HTML - Kort cache for dynamisk innhold
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+    
+    # Assets med hash - Lang cache (immutable)
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Vary header for komprimering
+    Header append Vary Accept-Encoding
+    
+    # Security Headers
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule> 

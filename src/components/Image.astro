@@ -1,0 +1,47 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+  style?: string;
+  'data-modal-image'?: string;
+  'data-modal-alt'?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  class: className = '', 
+  loading = 'lazy', 
+  sizes = '100vw', 
+  style,
+  'data-modal-image': dataModalImage,
+  'data-modal-alt': dataModalAlt
+} = Astro.props;
+
+// Generate WebP version path
+const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+const baseUrl = import.meta.env.BASE_URL;
+const fullSrc = src.startsWith('http') ? src : `${baseUrl}${src}`;
+const fullWebpSrc = webpSrc.startsWith('http') ? webpSrc : `${baseUrl}${webpSrc}`;
+---
+
+<picture>
+  <source 
+    type="image/webp" 
+    srcset={fullWebpSrc}
+    sizes={sizes}
+  />
+  <img 
+    src={fullSrc}
+    alt={alt}
+    class={className}
+    loading={loading}
+    sizes={sizes}
+    style={style}
+    data-modal-image={dataModalImage}
+    data-modal-alt={dataModalAlt}
+  />
+</picture> 

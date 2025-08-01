@@ -3,6 +3,7 @@ import Layout from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+import Image from '../components/Image.astro';
 import '../styles/globals.css';
 ---
 
@@ -41,10 +42,11 @@ import '../styles/globals.css';
           <!-- Service cards -->
           <div class="card text-center">
             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
-              <img 
-                src={`${import.meta.env.BASE_URL}galleri/gellakk/gellakk_2.jpg`}
+              <Image 
+                src="galleri/gellakk/gellakk_2.jpg"
                 alt="Gellakk behandling - Perfekt finish og glans på naturlige negler"
                 class="w-full h-full object-cover"
+                loading="eager"
               />
             </div>
             <h3 class="font-serif text-xl mb-2">Gellakk, nytt sett</h3>
@@ -53,10 +55,11 @@ import '../styles/globals.css';
           </div>
           <div class="card text-center">
             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
-              <img 
-                src={`${import.meta.env.BASE_URL}galleri/gelenegler/gelenegler_2.jpg`}
+              <Image 
+                src="galleri/gelenegler/gelenegler_2.jpg"
                 alt="Gelenegler behandling - Vakre forlengende gelenegler med kreativt design"
                 class="w-full h-full object-cover"
+                loading="eager"
               />
             </div>
             <h3 class="font-serif text-xl mb-2">Gelenegler, nytt sett</h3>
@@ -80,24 +83,27 @@ import '../styles/globals.css';
         
         <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-8">
           <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-[4/5] sm:aspect-square">
-            <img 
-              src={`${import.meta.env.BASE_URL}galleri/gellakk/gellakk_1.jpg`} 
+            <Image 
+              src="galleri/gellakk/gellakk_1.jpg" 
               alt="Gellakk inspirasjon - elegant finish"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="eager"
             />
           </div>
           <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-[4/5] sm:aspect-square">
-            <img 
-              src={`${import.meta.env.BASE_URL}galleri/gelenegler/gelenegler_2.jpg`} 
+            <Image 
+              src="galleri/gelenegler/gelenegler_2.jpg" 
               alt="Gelenegler inspirasjon - kreativt design"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="eager"
             />
           </div>
           <div class="overflow-hidden rounded-xl2 shadow-sm hover:shadow-md transition-shadow aspect-[4/5] sm:aspect-square">
-            <img 
-              src={`${import.meta.env.BASE_URL}galleri/gelenegler/IMG_2295.jpg`} 
+            <Image 
+              src="galleri/gelenegler/IMG_2295.jpg" 
               alt="Negldesign inspirasjon - perfekt finish"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="eager"
             />
           </div>
         </div>
@@ -115,11 +121,12 @@ import '../styles/globals.css';
         <div class="max-w-2xl mx-auto">
           <div class="card text-center">
             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6">
-              <img 
-                src={`${import.meta.env.BASE_URL}om_meg.jpg`} 
+              <Image 
+                src="om_meg.jpg" 
                 alt="Sara Sofie - Negltekniker og eier av neglesalong i Son" 
                 class="w-full h-full object-cover"
                 style="object-position: 30% center;"
+                loading="eager"
               />
             </div>
             <div class="text-lg card-description space-y-4 mb-6">

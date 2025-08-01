@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
+import Image from '../components/Image.astro';
 import '../styles/globals.css';
 ---
 
@@ -77,11 +78,12 @@ import '../styles/globals.css';
             <h2 class="font-serif text-xl mb-4">Om Sara Sofie</h2>
             <div class="space-y-4">
               <div class="w-32 h-32 mx-auto rounded-full overflow-hidden">
-                <img 
-                  src={`${import.meta.env.BASE_URL}om_meg.jpg`} 
+                <Image 
+                  src="om_meg.jpg" 
                   alt="Sara Sofie - Negltekniker og eier av neglesalong i Son, Viken" 
                   class="w-full h-full object-cover"
                   style="object-position: 30% center;"
+                  loading="eager"
                 />
               </div>
               <div class="text-sm card-description text-center space-y-2">

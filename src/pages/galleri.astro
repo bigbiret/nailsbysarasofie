@@ -3,6 +3,7 @@ import Layout from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+import Image from '../components/Image.astro';
 import '../styles/globals.css';
 
 // Gellakk images
@@ -45,8 +46,8 @@ const geleneglerImages = [
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {gellakkImages.map((image, index) => (
             <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
-              <img 
-                src={`${import.meta.env.BASE_URL}galleri/gellakk/${image.file}`}
+              <Image 
+                src={`galleri/gellakk/${image.file}`}
                 alt={image.alt}
                 class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading={index < 3 ? "eager" : "lazy"}
@@ -69,8 +70,8 @@ const geleneglerImages = [
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {geleneglerImages.map((image, index) => (
             <div class="overflow-hidden rounded-xl2 bg-ivory shadow-sm hover:shadow-md transition-shadow">
-              <img 
-                src={`${import.meta.env.BASE_URL}galleri/gelenegler/${image.file}`}
+              <Image 
+                src={`galleri/gelenegler/${image.file}`}
                 alt={image.alt}
                 class="gallery w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading={index < 3 ? "eager" : "lazy"}
