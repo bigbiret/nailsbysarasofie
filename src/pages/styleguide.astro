@@ -4,6 +4,11 @@ import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 import '../styles/globals.css';
 
+// Only allow access in development mode
+if (import.meta.env.PROD) {
+  return Astro.redirect('/');
+}
+
 const colors = [
   { name: 'Pink', hex: '#F3C7D7', class: 'bg-pink' },
   { name: 'Ivory', hex: '#F8F4F1', class: 'bg-ivory' },

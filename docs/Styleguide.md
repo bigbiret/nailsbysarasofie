@@ -160,10 +160,11 @@ h1,h2,h3,h4 { @apply font-serif tracking-tight text-coal; }
 
 ---
 
-## 6. Styleguide-side (/styleguide)
+## 6. Styleguide-side (/styleguide) - DEVELOPMENT ONLY
 
 * Viser fargeprøver, typografi-eksempler og basis-komponenter.
-* Skjules fra hovednavigasjon i produksjon (men behold URL).
+* **Tilgjengelig kun i development mode** - redirecter til forsiden i produksjon.
+* Bruk for å teste design-systemet under utvikling.
 
 Eksempel-seksjoner:
 

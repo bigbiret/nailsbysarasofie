@@ -1,6 +1,6 @@
 # Astro + Tailwind + Styleguide i Cursor
 
-> **Mål:** Kom i gang raskt i Cursor med en ryddig struktur, /styleguide-side, booking-modal og GitHub Pages deploy.
+> **Mål:** Kom i gang raskt i Cursor med en ryddig struktur, /styleguide-side (development-only), booking-modal og GitHub Pages deploy.
 
 ---
 
@@ -202,22 +202,34 @@ I siden der modalen står:
 
 ## 6. Styleguide-side
 
+**Tilgjengelig kun i development mode** - redirecter til forsiden i produksjon.
+
 `src/pages/styleguide.astro`
 
 ```astro
 ---
-import Layout from "../layouts/Base.astro";
+import Layout from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import '../styles/globals.css';
+
+// Only allow access in development mode
+if (import.meta.env.PROD) {
+  return Astro.redirect('/');
+}
+
 const colors = [
-  { name: 'Pink', hex: '#F3C7D7' },
-  { name: 'Ivory', hex: '#F8F4F1' },
-  { name: 'Black', hex: '#111111' },
-  { name: 'Nude', hex: '#F2C2AE' },
-  { name: 'Gold', hex: '#C8A96A' },
-  { name: 'Taupe', hex: '#B9B0A8' },
+  { name: 'Pink', hex: '#F3C7D7', class: 'bg-pink' },
+  { name: 'Ivory', hex: '#F8F4F1', class: 'bg-ivory' },
+  { name: 'Coal', hex: '#111111', class: 'bg-coal' },
+  { name: 'Nude', hex: '#F2C2AE', class: 'bg-nude' },
+  { name: 'Gold', hex: '#C8A96A', class: 'bg-gold' },
+  { name: 'Taupe', hex: '#B9B0A8', class: 'bg-taupe' },
 ];
 ---
+
 <Layout title="Styleguide">
-  <h1 class="mb-6">Styleguide</h1>
+<h1 class="mb-6">Styleguide</h1>
   <section class="mb-12">
     <h2 class="mb-4">Farger</h2>
     <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
